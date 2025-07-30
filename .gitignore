@@ -1,0 +1,37 @@
+# Ignore tar and large binary files
+*.tar
+k3s
+
+# Ignore backup and save files
+*.bak
+*.save
+
+# Ignore Containerlab/GNS3 runtime files
+*.log
+*.tmp
+
+# Ignore build artifacts
+*.o
+*.so
+*.a
+*.class
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore shell history and temp files
+*.swp
+*.swo
+*~
+
+# Ignore node_modules (if ever used)
+node_modules/
+
+# Ignore virtual environments (Python)
+.venv/
+venv/
+
+# Ignore any docker image archives
+*.img
+*.iso

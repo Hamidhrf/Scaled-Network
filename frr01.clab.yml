@@ -1,0 +1,448 @@
+name: frr01
+
+topology:
+  nodes:
+    switch1:
+      kind: ceos
+      image: ceos:4.28.0F
+      #startup-config: ./switch1/switch1.cfg
+    switch2:
+      kind: ceos
+      image: ceos:4.28.0F
+    switch3:
+      kind: ceos
+      image: ceos:4.28.0F
+    switch4:
+      kind: ceos
+      image: ceos:4.28.0F
+    switch5:
+      kind: ceos
+      image: ceos:4.28.0F
+
+    router1:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - router1/daemons:/etc/frr/daemons
+        - router1/frr.conf:/etc/frr/frr.conf
+    router2:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - router2/daemons:/etc/frr/daemons
+        - router2/frr.conf:/etc/frr/frr.conf
+    router3:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - router3/daemons:/etc/frr/daemons
+        - router3/frr.conf:/etc/frr/frr.conf
+        
+    router4:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - router4/daemons:/etc/frr/daemons
+        - router4/frr.conf:/etc/frr/frr.conf
+
+    router5:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - router5/daemons:/etc/frr/daemons
+        - router5/frr.conf:/etc/frr/frr.conf
+    router6:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - router6/daemons:/etc/frr/daemons
+        - router6/frr.conf:/etc/frr/frr.conf
+    router7:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - router7/daemons:/etc/frr/daemons
+        - router7/frr.conf:/etc/frr/frr.conf
+        
+    router8:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - router8/daemons:/etc/frr/daemons
+        - router8/frr.conf:/etc/frr/frr.conf
+    router9:
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - router9/daemons:/etc/frr/daemons
+        - router9/frr.conf:/etc/frr/frr.conf
+        
+    Edge_server1:
+      kind: linux
+      image: testing954/server1:latest
+    Edge_server2:
+      kind: linux
+      image: testing954/server2:latest 
+    Edge_server3:
+      kind: linux
+      image: testing954/server3:latest    
+    Edge_server4:
+      kind: linux
+      image: testing954/server4:latest
+    Edge_server5:
+      kind: linux
+      image: testing954/server5:latest 
+    Edge_server6:
+      kind: linux
+      image: testing954/server6:latest    
+    Edge_server7:
+      kind: linux
+      image: testing954/server7:latest
+    Edge_server8:
+      kind: linux
+      image: testing954/server8:latest 
+
+    client1:
+      #kind: linux
+      #image: provider-client:latest 
+      #startup-config: ./client1/config.txt
+      kind: linux
+      image: clean-k3s:latest
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      #privileged: true
+      #cgroupns-mode: host
+      #exec:
+        #- ip link set eth1 up
+        #- ip addr add 10.0.2.216/27 brd 10.0.2.223 dev eth1
+        #- ip route add 10.0.0.0/8 via 10.0.3.1 dev eth1
+      cmd: "bash -c 'k3s server --node-name k8s11 --disable traefik --disable-network-policy --tls-san 10.0.3.10 --snapshotter native & while true; do sleep 1000; done'"
+    client2:
+      #kind: linux
+      #image: provider-client:latest 
+      #startup-config: ./client2/config.cfg
+      kind: linux
+      image: clean-k3s:latest
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      #privileged: true
+      #cgroupns-mode: host
+      #exec:
+        #- ip link set eth1 up
+        #- ip addr add 10.0.2.216/27 brd 10.0.2.223 dev eth1
+        #- ip route add 10.0.0.0/8 via 10.0.3.1 dev eth1
+      cmd: "bash -c 'k3s server --node-name k8s12 --disable traefik --disable-network-policy --tls-san 10.0.3.15 --snapshotter native & while true; do sleep 1000; done'"
+    client3:
+      #kind: linux
+      #image: provider-client:latest 
+      #startup-config: ./client3/config.cfg
+      kind: linux
+      image: clean-k3s:latest
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      #privileged: true
+      #cgroupns-mode: host
+      #exec:
+        #- ip link set eth1 up
+        #- ip addr add 10.0.2.216/27 brd 10.0.2.223 dev eth1
+        #- ip route add 10.0.0.0/8 via 10.0.3.1 dev eth1
+      cmd: "bash -c 'k3s server --node-name k8s3 --disable traefik --disable-network-policy --tls-san 10.0.3.18 --snapshotter native & while true; do sleep 1000; done'"
+    client4:
+      #kind: linux
+      #image: provider-client:latest 
+      #startup-config: ./client4/config.cfg
+      kind: linux
+      image: clean-k3s:latest
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      #privileged: true
+      #cgroupns-mode: host
+      #exec:
+        #- ip link set eth1 up
+        #- ip addr add 10.0.2.216/27 brd 10.0.2.223 dev eth1
+        #- ip route add 10.0.0.0/8 via 10.0.3.1 dev eth1
+      cmd: "bash -c 'k3s server --node-name k8s4 --disable traefik --disable-network-policy --tls-san 10.0.3.5 --snapshotter native & while true; do sleep 1000; done'"
+    client5:
+      #kind: linux
+      #image: provider-client:latest 
+      #startup-config: ./client5/config.cfg
+      kind: linux
+      image: clean-k3s:latest
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      #privileged: true
+      #cgroupns-mode: host
+      #exec:
+        #- ip link set eth1 up
+        #- ip addr add 10.0.2.216/27 brd 10.0.2.223 dev eth1
+        #- ip route add 10.0.0.0/8 via 10.0.3.1 dev eth1
+      cmd: "bash -c 'k3s server --node-name k8s5 --disable traefik --disable-network-policy --tls-san 10.0.3.6 --snapshotter native & while true; do sleep 1000; done'"
+    client6:
+      kind: linux
+      image: clean-k3s:latest
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      #privileged: true
+      #cgroupns-mode: host
+      #exec:
+        #- ip link set eth1 up
+        #- ip addr add 10.0.2.216/27 brd 10.0.2.223 dev eth1
+        #- ip route add 10.0.0.0/8 via 10.0.3.1 dev eth1
+      cmd: "bash -c 'k3s server --node-name k8s6 --disable traefik --disable-network-policy --tls-san 10.0.3.7 --snapshotter native & while true; do sleep 1000; done'"
+    client7:
+      kind: linux
+      image: clean-k3s:latest
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      #privileged: true
+      #cgroupns-mode: host
+      #exec:
+        #- ip link set eth1 up
+        #- ip addr add 10.0.2.216/27 brd 10.0.2.223 dev eth1
+        #- ip route add 10.0.0.0/8 via 10.0.3.1 dev eth1
+      cmd: "bash -c 'k3s server --node-name k8s7 --disable traefik --disable-network-policy --tls-san 10.0.5.74 --snapshotter native & while true; do sleep 1000; done'"
+    client8:
+      kind: linux
+      image: clean-k3s:latest
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      #privileged: true
+      #cgroupns-mode: host
+      #exec:
+        #- ip link set eth1 up
+        #- ip addr add 10.0.2.216/27 brd 10.0.2.223 dev eth1
+        #- ip route add 10.0.0.0/8 via 10.0.3.1 dev eth1
+      cmd: "bash -c 'k3s server --node-name k8s8 --disable traefik --disable-network-policy --tls-san 10.0.5.72 --snapshotter native & while true; do sleep 1000; done'"
+    client9:
+      kind: linux
+      image: clean-k3s:latest
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      #privileged: true
+      #cgroupns-mode: host
+      #exec:
+        #- ip link set eth1 up
+        #- ip addr add 10.0.2.216/27 brd 10.0.2.223 dev eth1
+        #- ip route add 10.0.0.0/8 via 10.0.3.1 dev eth1
+      cmd: "bash -c 'k3s server --node-name k8s9 --disable traefik --disable-network-policy --tls-san 10.0.5.75 --snapshotter native & while true; do sleep 1000; done'"
+    client10:
+      kind: linux
+      image: clean-k3s:latest
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      #privileged: true
+      #cgroupns-mode: host
+      #exec:
+        #- ip link set eth1 up
+        #- ip addr add 10.0.2.216/27 brd 10.0.2.223 dev eth1
+        #- ip route add 10.0.0.0/8 via 10.0.3.1 dev eth1
+      cmd: "bash -c 'k3s server --node-name k8s10 --disable traefik --disable-network-policy --tls-san 10.0.5.127 --snapshotter native & while true; do sleep 1000; done'"
+    client11:
+      kind: linux
+      image: testing954/client11:latest 
+      #startup-config: ./client11/
+    client12:
+      kind: linux
+      image: testing954/client12:latest 
+      #startup-config: ./client12/config.cfg
+    client13:
+      kind: linux
+      image: testing954/client13:latest 
+      #startup-config: ./client13/config.cfg
+    client14:
+      kind: linux
+      image: testing954/client14:latest 
+      #startup-config: ./client14/config.cfg
+    client15:
+      kind: linux
+      image: testing954/client15:latest 
+      #startup-config: ./client15/config.cfg
+    client16:
+      kind: linux
+      image: testing954/client16:latest 
+      #startup-config: ./client16/config.cfg
+    client17:
+      kind: linux
+      image: testing954/client17:latest 
+      #startup-config: ./client17/config.cfg
+    client18:
+      kind: linux
+      image: testing954/client18:latest 
+      #startup-config: ./client18/config.cfg
+    client19:
+      kind: linux
+      image: testing954/client19:latest 
+      #startup-config: ./client19/config.cfg
+    client20:
+      kind: linux
+      image: testing954/client20:latest 
+      #startup-config: ./client20/config.cfg
+    client21:
+      kind: linux
+      image: testing954/client21:latest 
+      #startup-config: ./client21/config.cfg
+    client22:
+      kind: linux
+      image: testing954/client22:latest 
+      #startup-config: ./client22/config.cfg
+    client23:
+      kind: linux
+      image: testing954/client23:latest 
+      #startup-config: ./client23/config.cfg
+    client24:
+      kind: linux
+      image: testing954/client24:latest 
+      #startup-config: ./client24/config.cfg
+    client25:
+      kind: linux
+      image: testing954/client25:latest 
+      #startup-config: ./client25/config.cfg
+
+    client26:
+      kind: linux
+      image: clean-k3s:latest
+      #network-mode: host
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+        #- ./k3s-config-client26.yaml:/etc/rancher/k3s/config.yaml:ro
+      #exec:
+        #- ip link set eth1 up
+        #- ip addr add 10.0.3.9/25 brd 10.0.3.127 dev eth1
+        #- ip route add 10.0.0.0/8 via 10.0.3.1 dev eth1
+        #- /run:/run
+        #- /run/lock:/run/lock
+      #privileged: true
+      #cgroupns-mode: host
+      #cmd: "bash -c 'k3s server --node-name client26 --disable traefik --disable-network-policy --snapshotter native & while true; do sleep 1000; done'"
+      cmd: "bash -c 'k3s server --node-name k8s2 --disable traefik --disable-network-policy --tls-san 10.0.2.216 --snapshotter native & sleep infinity'"
+
+    client27:
+      kind: linux
+      image: clean-k3s:latest
+      #network-mode: host
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      #privileged: true
+      #cgroupns-mode: host
+      #exec:
+        #- ip link set eth1 up
+        #- ip addr add 10.0.2.216/27 brd 10.0.2.223 dev eth1
+        #- ip route add 10.0.0.0/8 via 10.0.3.1 dev eth1
+      cmd: "bash -c 'k3s server --node-name k8s2 --disable traefik --disable-network-policy --tls-san 10.0.3.9 --snapshotter native & while true; do sleep 1000; done'"
+  links:
+     #Router 1 connections
+    - endpoints: ["router1:eth1", "router2:eth1"]
+    - endpoints: ["router1:eth2", "switch1:eth1"]
+    - endpoints: ["router1:eth4", "router3:eth1"]
+    - endpoints: ["router1:eth5", "router4:eth1"]
+    - endpoints: ["router1:eth3", "Edge_server2:eth1"]
+    # Switch 1
+    - endpoints: ["client1:eth1", "switch1:eth3"]
+    - endpoints: ["client2:eth1", "switch1:eth4"]
+    - endpoints: ["client3:eth1", "switch1:eth5"]
+    - endpoints: ["client4:eth1", "switch1:eth6"]
+    - endpoints: ["client5:eth1", "switch1:eth7"]
+    - endpoints: ["client6:eth1", "switch1:eth8"]
+    - endpoints: ["Edge_server1:eth1", "switch1:eth2"]
+
+    - endpoints: ["client27:eth1", "switch1:eth9"]
+    # Router 2 Connections
+    - endpoints: ["router2:eth2", "router6:eth1"]
+    - endpoints: ["router2:eth3", "router7:eth1"]
+    # Router 3 Connections
+    - endpoints: ["router3:eth3", "switch3:eth1"]
+    - endpoints: ["router3:eth4", "router7:eth2"]
+    # Switch 3 Connections
+    - endpoints: ["switch3:eth2", "Edge_server5:eth1"]
+    # Router 4 Connections
+    - endpoints: ["router4:eth2", "router3:eth2"]
+    - endpoints: ["router4:eth3", "router5:eth1"]
+    - endpoints: ["router4:eth4", "Edge_server3:eth1"]  
+    # Router 5
+    - endpoints: ["router5:eth2", "switch2:eth1"]
+    # Switch 2
+    - endpoints: ["switch2:eth2", "client7:eth1"]
+    - endpoints: ["switch2:eth3", "client8:eth1"]
+    - endpoints: ["switch2:eth4", "client9:eth1"]
+    - endpoints: ["switch2:eth5", "client10:eth1"]
+    - endpoints: ["switch2:eth6", "client11:eth1"]
+    - endpoints: ["switch2:eth7", "client12:eth1"]
+    - endpoints: ["switch2:eth8", "client13:eth1"]
+    - endpoints: ["switch2:eth9", "client14:eth1"]
+    - endpoints: ["switch2:eth10", "client15:eth1"]
+    - endpoints: ["switch2:eth11", "Edge_server4:eth1"]
+    # Router 6 Connections
+    - endpoints: ["router6:eth2", "router8:eth1"]
+    - endpoints: ["router6:eth3", "router9:eth1"]
+    # Router 7 Connections
+    - endpoints: ["router7:eth3", "switch4:eth1"]
+    # Switch 4 Connections
+    - endpoints: ["switch4:eth2", "Edge_server6:eth1"]
+    
+    # Router 8 Connections
+    - endpoints: ["router8:eth2", "router9:eth2"]
+    # Router 9 Connections
+    - endpoints: ["router9:eth3", "Edge_server7:eth1"]
+    - endpoints: ["router9:eth4", "switch5:eth1"]
+    # Switch 5 Connections
+    - endpoints: ["switch5:eth2", "client16:eth1"]
+    - endpoints: ["switch5:eth3", "client17:eth1"]
+    - endpoints: ["switch5:eth4", "client18:eth1"]
+    - endpoints: ["switch5:eth5", "client19:eth1"]
+    - endpoints: ["switch5:eth6", "client20:eth1"]
+    - endpoints: ["switch5:eth7", "client21:eth1"]
+    - endpoints: ["switch5:eth8", "client22:eth1"]
+    - endpoints: ["switch5:eth9", "client23:eth1"]
+    - endpoints: ["switch5:eth10", "client24:eth1"]
+    - endpoints: ["switch5:eth11", "client25:eth1"]
+    - endpoints: ["switch5:eth12", "Edge_server8:eth1"]
+    #- endpoints: ["router8:eth3", "macvlan:vmnet8"]
+    - endpoints: ["switch5:eth13", "client26:eth1"]

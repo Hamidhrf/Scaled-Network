@@ -1,0 +1,246 @@
+---
+switch1:
+    username: admin
+    password: admin
+    platform: ceos
+    hostname: 172.20.20.94
+switch2:
+    username: admin
+    password: admin
+    platform: ceos
+    hostname: 172.20.20.96
+switch3:
+    username: admin
+    password: admin
+    platform: ceos
+    hostname: 172.20.20.78
+switch4:
+    username: admin
+    password: admin
+    platform: ceos
+    hostname: 172.20.20.69
+switch5:
+    username: admin
+    password: admin
+    platform: ceos
+    hostname: 172.20.20.61
+Edge_server1:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.72
+Edge_server2:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.107
+Edge_server3:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.108
+Edge_server4:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.53
+Edge_server5:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.42
+Edge_server6:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.11
+Edge_server7:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.106
+Edge_server8:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.83
+client1:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.58
+client10:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.109
+client11:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.105
+client12:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.41
+client13:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.15
+client14:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.19
+client15:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.91
+client16:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.62
+client17:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.64
+client18:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.27
+client19:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.13
+client2:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.76
+client20:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.28
+client21:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.38
+client22:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.17
+client23:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.74
+client24:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.5
+client25:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.102
+client26:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.57
+client27:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.89
+client3:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.66
+client4:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.26
+client5:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.82
+client6:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.85
+client7:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.12
+client8:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.31
+client9:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.46
+router1:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.73
+router2:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.45
+router3:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.32
+router4:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.22
+router5:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.59
+router6:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.50
+router7:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.33
+router8:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.68
+router9:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.43
