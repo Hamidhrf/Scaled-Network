@@ -12,102 +12,102 @@ all:
         ansible_password: admin
       hosts:
         clab-frr01-switch1:
-          ansible_host: 172.20.20.55
+          ansible_host: 172.20.20.48
         clab-frr01-switch2:
-          ansible_host: 172.20.20.25
+          ansible_host: 172.20.20.45
         clab-frr01-switch3:
-          ansible_host: 172.20.20.13
+          ansible_host: 172.20.20.31
         clab-frr01-switch4:
-          ansible_host: 172.20.20.32
+          ansible_host: 172.20.20.12
         clab-frr01-switch5:
-          ansible_host: 172.20.20.9
+          ansible_host: 172.20.20.14
     linux:
       hosts:
         clab-frr01-Edge_server1:
-          ansible_host: 172.20.20.47
-        clab-frr01-Edge_server2:
-          ansible_host: 172.20.20.22
-        clab-frr01-Edge_server3:
-          ansible_host: 172.20.20.48
-        clab-frr01-Edge_server4:
-          ansible_host: 172.20.20.11
-        clab-frr01-Edge_server5:
-          ansible_host: 172.20.20.40
-        clab-frr01-Edge_server6:
-          ansible_host: 172.20.20.27
-        clab-frr01-Edge_server7:
-          ansible_host: 172.20.20.43
-        clab-frr01-Edge_server8:
-          ansible_host: 172.20.20.45
-        clab-frr01-client1:
-          ansible_host: 172.20.20.35
-        clab-frr01-client10:
-          ansible_host: 172.20.20.15
-        clab-frr01-client11:
-          ansible_host: 172.20.20.42
-        clab-frr01-client12:
-          ansible_host: 172.20.20.56
-        clab-frr01-client13:
-          ansible_host: 172.20.20.2
-        clab-frr01-client14:
           ansible_host: 172.20.20.49
-        clab-frr01-client15:
-          ansible_host: 172.20.20.46
-        clab-frr01-client16:
-          ansible_host: 172.20.20.52
-        clab-frr01-client17:
-          ansible_host: 172.20.20.53
-        clab-frr01-client18:
-          ansible_host: 172.20.20.14
-        clab-frr01-client19:
-          ansible_host: 172.20.20.54
-        clab-frr01-client2:
-          ansible_host: 172.20.20.34
-        clab-frr01-client20:
-          ansible_host: 172.20.20.18
-        clab-frr01-client21:
-          ansible_host: 172.20.20.39
-        clab-frr01-client22:
-          ansible_host: 172.20.20.5
-        clab-frr01-client23:
+        clab-frr01-Edge_server2:
           ansible_host: 172.20.20.44
-        clab-frr01-client24:
-          ansible_host: 172.20.20.3
-        clab-frr01-client25:
-          ansible_host: 172.20.20.41
-        clab-frr01-client26:
-          ansible_host: 172.20.20.24
-        clab-frr01-client27:
-          ansible_host: 172.20.20.4
-        clab-frr01-client3:
-          ansible_host: 172.20.20.17
-        clab-frr01-client4:
-          ansible_host: 172.20.20.29
-        clab-frr01-client5:
-          ansible_host: 172.20.20.31
-        clab-frr01-client6:
-          ansible_host: 172.20.20.51
-        clab-frr01-client7:
-          ansible_host: 172.20.20.6
-        clab-frr01-client8:
-          ansible_host: 172.20.20.33
-        clab-frr01-client9:
-          ansible_host: 172.20.20.21
-        clab-frr01-router1:
-          ansible_host: 172.20.20.16
-        clab-frr01-router2:
-          ansible_host: 172.20.20.12
-        clab-frr01-router3:
-          ansible_host: 172.20.20.50
-        clab-frr01-router4:
-          ansible_host: 172.20.20.23
-        clab-frr01-router5:
-          ansible_host: 172.20.20.36
-        clab-frr01-router6:
-          ansible_host: 172.20.20.30
-        clab-frr01-router7:
-          ansible_host: 172.20.20.20
-        clab-frr01-router8:
+        clab-frr01-Edge_server3:
+          ansible_host: 172.20.20.25
+        clab-frr01-Edge_server4:
           ansible_host: 172.20.20.26
-        clab-frr01-router9:
+        clab-frr01-Edge_server5:
+          ansible_host: 172.20.20.34
+        clab-frr01-Edge_server6:
+          ansible_host: 172.20.20.20
+        clab-frr01-Edge_server7:
+          ansible_host: 172.20.20.30
+        clab-frr01-Edge_server8:
+          ansible_host: 172.20.20.56
+        clab-frr01-client1:
+          ansible_host: 172.20.20.40
+        clab-frr01-client10:
+          ansible_host: 172.20.20.43
+        clab-frr01-client11:
+          ansible_host: 172.20.20.33
+        clab-frr01-client12:
+          ansible_host: 172.20.20.52
+        clab-frr01-client13:
+          ansible_host: 172.20.20.6
+        clab-frr01-client14:
+          ansible_host: 172.20.20.5
+        clab-frr01-client15:
+          ansible_host: 172.20.20.11
+        clab-frr01-client16:
+          ansible_host: 172.20.20.2
+        clab-frr01-client17:
+          ansible_host: 172.20.20.9
+        clab-frr01-client18:
           ansible_host: 172.20.20.19
+        clab-frr01-client19:
+          ansible_host: 172.20.20.3
+        clab-frr01-client2:
+          ansible_host: 172.20.20.18
+        clab-frr01-client20:
+          ansible_host: 172.20.20.16
+        clab-frr01-client21:
+          ansible_host: 172.20.20.51
+        clab-frr01-client22:
+          ansible_host: 172.20.20.22
+        clab-frr01-client23:
+          ansible_host: 172.20.20.41
+        clab-frr01-client24:
+          ansible_host: 172.20.20.35
+        clab-frr01-client25:
+          ansible_host: 172.20.20.55
+        clab-frr01-client26:
+          ansible_host: 172.20.20.13
+        clab-frr01-client27:
+          ansible_host: 172.20.20.53
+        clab-frr01-client3:
+          ansible_host: 172.20.20.15
+        clab-frr01-client4:
+          ansible_host: 172.20.20.32
+        clab-frr01-client5:
+          ansible_host: 172.20.20.46
+        clab-frr01-client6:
+          ansible_host: 172.20.20.4
+        clab-frr01-client7:
+          ansible_host: 172.20.20.27
+        clab-frr01-client8:
+          ansible_host: 172.20.20.39
+        clab-frr01-client9:
+          ansible_host: 172.20.20.54
+        clab-frr01-router1:
+          ansible_host: 172.20.20.47
+        clab-frr01-router2:
+          ansible_host: 172.20.20.42
+        clab-frr01-router3:
+          ansible_host: 172.20.20.17
+        clab-frr01-router4:
+          ansible_host: 172.20.20.24
+        clab-frr01-router5:
+          ansible_host: 172.20.20.29
+        clab-frr01-router6:
+          ansible_host: 172.20.20.23
+        clab-frr01-router7:
+          ansible_host: 172.20.20.21
+        clab-frr01-router8:
+          ansible_host: 172.20.20.50
+        clab-frr01-router9:
+          ansible_host: 172.20.20.36

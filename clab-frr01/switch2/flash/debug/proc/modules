@@ -54,7 +54,7 @@ nft_compat 20480 558 - Live 0xffffffffc08b1000
 nf_tables 376832 2821 nft_chain_nat,nft_compat, Live 0xffffffffc0851000
 libcrc32c 12288 3 nf_nat,nf_conntrack,nf_tables, Live 0xffffffffc084b000
 nfnetlink 20480 7 nfnetlink_acct,nfnetlink_log,nf_conntrack_netlink,ip_set,nft_compat,nf_tables, Live 0xffffffffc0831000
-xfrm_user 61440 9 - Live 0xffffffffc0834000
+xfrm_user 61440 11 - Live 0xffffffffc0834000
 xfrm_algo 16384 1 xfrm_user, Live 0xffffffffc07ea000
 overlay 212992 63 - Live 0xffffffffc07f9000
 intel_rapl_msr 20480 0 - Live 0xffffffffc07f0000
@@ -93,7 +93,7 @@ parport 73728 3 parport_pc,ppdev,lp, Live 0xffffffffc04b7000
 efi_pstore 12288 0 - Live 0xffffffffc04b1000
 ip_tables 32768 4 iptable_nat,iptable_filter,iptable_mangle,iptable_raw, Live 0xffffffffc04a8000
 x_tables 65536 30 xt_nfacct,xt_HL,xt_u32,ip6t_REJECT,ip6t_ipv6header,ip6table_nat,ip6table_filter,ip6table_mangle,ip6table_raw,xt_LOG,xt_limit,ipt_REJECT,xt_hl,xt_multiport,xt_CT,xt_mark,iptable_nat,iptable_filter,iptable_mangle,iptable_raw,ip6_tables,xt_comment,xt_nat,xt_tcpudp,xt_conntrack,xt_MASQUERADE,xt_set,xt_addrtype,nft_compat,ip_tables, Live 0xffffffffc0490000
-autofs4 57344 10 - Live 0xffffffffc0489000
+autofs4 57344 12 - Live 0xffffffffc0489000
 crc32_pclmul 12288 0 - Live 0xffffffffc049a000
 psmouse 217088 0 - Live 0xffffffffc0450000
 i2c_piix4 32768 0 - Live 0xffffffffc043f000

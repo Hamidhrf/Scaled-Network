@@ -76,27 +76,67 @@ topology:
     Edge_server1:
       kind: linux
       image: testing954/server1:latest
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+      exec:
+        - bash /client-init.sh
     Edge_server2:
       kind: linux
       image: testing954/server2:latest
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+      exec:
+        - bash /client-init.sh
     Edge_server3:
       kind: linux
       image: testing954/server3:latest
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+      exec:
+        - bash /client-init.sh
     Edge_server4:
       kind: linux
       image: testing954/server4:latest
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+      exec:
+        - bash /client-init.sh
     Edge_server5:
       kind: linux
       image: testing954/server5:latest
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+      exec:
+        - bash /client-init.sh
     Edge_server6:
       kind: linux
       image: testing954/server6:latest
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+      exec:
+        - bash /client-init.sh
     Edge_server7:
       kind: linux
       image: testing954/server7:latest
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+      exec:
+        - bash /client-init.sh
     Edge_server8:
       kind: linux
       image: testing954/server8:latest
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+      exec:
+        - bash /client-init.sh
     client1:
       kind: linux
       image: hamidhrf/k3s-client:latest

@@ -3,244 +3,244 @@ switch1:
     username: admin
     password: admin
     platform: ceos
-    hostname: 172.20.20.55
+    hostname: 172.20.20.48
 switch2:
     username: admin
     password: admin
     platform: ceos
-    hostname: 172.20.20.25
+    hostname: 172.20.20.45
 switch3:
     username: admin
     password: admin
     platform: ceos
-    hostname: 172.20.20.13
+    hostname: 172.20.20.31
 switch4:
     username: admin
     password: admin
     platform: ceos
-    hostname: 172.20.20.32
+    hostname: 172.20.20.12
 switch5:
     username: admin
     password: admin
     platform: ceos
-    hostname: 172.20.20.9
+    hostname: 172.20.20.14
 Edge_server1:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.47
+    hostname: 172.20.20.49
 Edge_server2:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.22
+    hostname: 172.20.20.44
 Edge_server3:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.48
+    hostname: 172.20.20.25
 Edge_server4:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.11
+    hostname: 172.20.20.26
 Edge_server5:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.40
+    hostname: 172.20.20.34
 Edge_server6:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.27
+    hostname: 172.20.20.20
 Edge_server7:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.43
+    hostname: 172.20.20.30
 Edge_server8:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.45
+    hostname: 172.20.20.56
 client1:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.35
+    hostname: 172.20.20.40
 client10:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.15
+    hostname: 172.20.20.43
 client11:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.42
+    hostname: 172.20.20.33
 client12:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.56
+    hostname: 172.20.20.52
 client13:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.2
+    hostname: 172.20.20.6
 client14:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.49
+    hostname: 172.20.20.5
 client15:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.46
+    hostname: 172.20.20.11
 client16:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.52
+    hostname: 172.20.20.2
 client17:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.53
+    hostname: 172.20.20.9
 client18:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.14
+    hostname: 172.20.20.19
 client19:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.54
+    hostname: 172.20.20.3
 client2:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.34
+    hostname: 172.20.20.18
 client20:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.18
+    hostname: 172.20.20.16
 client21:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.39
+    hostname: 172.20.20.51
 client22:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.5
+    hostname: 172.20.20.22
 client23:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.44
+    hostname: 172.20.20.41
 client24:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.3
+    hostname: 172.20.20.35
 client25:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.41
+    hostname: 172.20.20.55
 client26:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.24
+    hostname: 172.20.20.13
 client27:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.4
+    hostname: 172.20.20.53
 client3:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.17
+    hostname: 172.20.20.15
 client4:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.29
+    hostname: 172.20.20.32
 client5:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.31
+    hostname: 172.20.20.46
 client6:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.51
+    hostname: 172.20.20.4
 client7:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.6
+    hostname: 172.20.20.27
 client8:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.33
+    hostname: 172.20.20.39
 client9:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.21
+    hostname: 172.20.20.54
 router1:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.16
+    hostname: 172.20.20.47
 router2:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.12
+    hostname: 172.20.20.42
 router3:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.50
+    hostname: 172.20.20.17
 router4:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.23
+    hostname: 172.20.20.24
 router5:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.36
+    hostname: 172.20.20.29
 router6:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.30
+    hostname: 172.20.20.23
 router7:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.20
+    hostname: 172.20.20.21
 router8:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.26
+    hostname: 172.20.20.50
 router9:
     username: 
     password: 
     platform: linux
-    hostname: 172.20.20.19
+    hostname: 172.20.20.36
