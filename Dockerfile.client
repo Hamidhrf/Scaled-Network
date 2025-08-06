@@ -2,21 +2,19 @@ FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install tools (including ping)
+# 1) Install dependencies
 RUN apt-get update && \
     apt-get install -y iproute2 iptables iputils-ping ca-certificates bash curl tar sudo nano && \
     rm -rf /var/lib/apt/lists/*
 
-# Copy and install k3s binary
+# 2) Copy k3s binary
 COPY k3s /usr/local/bin/k3s
 RUN chmod +x /usr/local/bin/k3s
 
-# Download and install liqoctl
-RUN curl -LS "https://github.com/liqotech/liqo/releases/download/v1.0.0/liqoctl-linux-amd64.tar.gz" | tar -xz && \
+# 3) Install liqoctl
+RUN curl -LS "https://github.com/liqotech/liqo/releases/download/v1.0.0/liqoctl-linux-amd64.tar.gz" \
+    | tar -xz && \
     install -o root -g root -m 0755 liqoctl /usr/local/bin/liqoctl && \
     rm -f liqoctl
-
-# Clean up leftover state
-RUN rm -rf /etc/rancher/k3s /var/lib/rancher/k3s /var/lib/kubelet
 
 CMD ["bash", "-c", "while true; do sleep 1000; done"]
