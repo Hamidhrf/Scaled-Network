@@ -4,19 +4,19 @@ topology:
   nodes:
     switch1:
       kind: ceos
-      image: ceos:4.28.0F
+      image: testing954/ceos:4.28.0F
     switch2:
       kind: ceos
-      image: ceos:4.28.0F
+      image: testing954/ceos:4.28.0F
     switch3:
       kind: ceos
-      image: ceos:4.28.0F
+      image: testing954/ceos:4.28.0F
     switch4:
       kind: ceos
-      image: ceos:4.28.0F
+      image: testing954/ceos:4.28.0F
     switch5:
       kind: ceos
-      image: ceos:4.28.0F
+      image: testing954/ceos:4.28.0F
 
     router1:
       kind: linux
@@ -139,382 +139,624 @@ topology:
         - bash /client-init.sh
     client1:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client1/k3s:/var/lib/rancher/k3s
+        - ./client-data/client1/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client1/kubelet:/var/lib/kubelet
+        - ./client-data/client1/liqo:/var/lib/liqo
+        - ./client-data/client1/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro
+        - ./shared/token:/shared/token      
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
-      #cmd: "bash -c '/client-init.sh & sleep infinity'"
+         
+      
     client2:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client2/k3s:/var/lib/rancher/k3s
+        - ./client-data/client2/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client2/kubelet:/var/lib/kubelet
+        - ./client-data/client2/liqo:/var/lib/liqo
+        - ./client-data/client2/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
-      #cmd: "bash -c '/client-init.sh & sleep infinity'"
+         
+     
     client3:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client3/k3s:/var/lib/rancher/k3s
+        - ./client-data/client3/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client3/kubelet:/var/lib/kubelet
+        - ./client-data/client3/liqo:/var/lib/liqo
+        - ./client-data/client3/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
-      #cmd: "bash -c '/client-init.sh & sleep infinity'"
+         
+      
     client4:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client4/k3s:/var/lib/rancher/k3s
+        - ./client-data/client4/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client4/kubelet:/var/lib/kubelet
+        - ./client-data/client4/liqo:/var/lib/liqo
+        - ./client-data/client4/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
-      #cmd: "bash -c '/client-init.sh & sleep infinity'"
+         
+      
     client5:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client5/k3s:/var/lib/rancher/k3s
+        - ./client-data/client5/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client5/kubelet:/var/lib/kubelet
+        - ./client-data/client5/liqo:/var/lib/liqo
+        - ./client-data/client5/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
-      #cmd: "bash -c '/client-init.sh & sleep infinity'"
+         
+    
     client6:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client6/k3s:/var/lib/rancher/k3s
+        - ./client-data/client6/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client6/kubelet:/var/lib/kubelet
+        - ./client-data/client6/liqo:/var/lib/liqo
+        - ./client-data/client6/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
-      #cmd: "bash -c '/client-init.sh & sleep infinity'"
+         
+     
     client7:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client7/k3s:/var/lib/rancher/k3s
+        - ./client-data/client7/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client7/kubelet:/var/lib/kubelet
+        - ./client-data/client7/liqo:/var/lib/liqo
+        - ./client-data/client7/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
-      #cmd: "bash -c '/client-init.sh & sleep infinity'"
+         
+      
     client8:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client8/k3s:/var/lib/rancher/k3s
+        - ./client-data/client8/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client8/kubelet:/var/lib/kubelet
+        - ./client-data/client8/liqo:/var/lib/liqo
+        - ./client-data/client8/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
-      #cmd: "bash -c '/client-init.sh & sleep infinity'"
+         
+     
     client9:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client9/k3s:/var/lib/rancher/k3s
+        - ./client-data/client9/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client9/kubelet:/var/lib/kubelet
+        - ./client-data/client9/liqo:/var/lib/liqo
+        - ./client-data/client9/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
-      #cmd: "bash -c '/client-init.sh & sleep infinity'"
+         
+      
     client10:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client10/k3s:/var/lib/rancher/k3s
+        - ./client-data/client10/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client10/kubelet:/var/lib/kubelet
+        - ./client-data/client10/liqo:/var/lib/liqo
+        - ./client-data/client10/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
-      #cmd: "bash -c '/client-init.sh & sleep infinity'"
+         
+ 
     client11:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client11/k3s:/var/lib/rancher/k3s
+        - ./client-data/client11/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client11/kubelet:/var/lib/kubelet
+        - ./client-data/client11/liqo:/var/lib/liqo
+        - ./client-data/client11/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
+         
 
     client12:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client12/k3s:/var/lib/rancher/k3s
+        - ./client-data/client12/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client12/kubelet:/var/lib/kubelet
+        - ./client-data/client12/liqo:/var/lib/liqo
+        - ./client-data/client12/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
+         
 
     client13:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client13/k3s:/var/lib/rancher/k3s
+        - ./client-data/client13/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client13/kubelet:/var/lib/kubelet
+        - ./client-data/client13/liqo:/var/lib/liqo
+        - ./client-data/client13/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
+         
 
     client14:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client14/k3s:/var/lib/rancher/k3s
+        - ./client-data/client14/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client14/kubelet:/var/lib/kubelet
+        - ./client-data/client14/liqo:/var/lib/liqo
+        - ./client-data/client14/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
+         
 
     client15:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client15/k3s:/var/lib/rancher/k3s
+        - ./client-data/client15/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client15/kubelet:/var/lib/kubelet
+        - ./client-data/client15/liqo:/var/lib/liqo
+        - ./client-data/client15/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
+         
 
     client16:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client16/k3s:/var/lib/rancher/k3s
+        - ./client-data/client16/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client16/kubelet:/var/lib/kubelet
+        - ./client-data/client16/liqo:/var/lib/liqo
+        - ./client-data/client16/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
+         
 
     client17:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client17/k3s:/var/lib/rancher/k3s
+        - ./client-data/client17/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client17/kubelet:/var/lib/kubelet
+        - ./client-data/client17/liqo:/var/lib/liqo
+        - ./client-data/client17/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
+         
 
     client18:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client18/k3s:/var/lib/rancher/k3s
+        - ./client-data/client18/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client18/kubelet:/var/lib/kubelet
+        - ./client-data/client18/liqo:/var/lib/liqo
+        - ./client-data/client18/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
+         
 
     client19:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client19/k3s:/var/lib/rancher/k3s
+        - ./client-data/client19/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client19/kubelet:/var/lib/kubelet
+        - ./client-data/client19/liqo:/var/lib/liqo
+        - ./client-data/client19/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
+         
 
     client20:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client20/k3s:/var/lib/rancher/k3s
+        - ./client-data/client20/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client20/kubelet:/var/lib/kubelet
+        - ./client-data/client20/liqo:/var/lib/liqo
+        - ./client-data/client20/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
+         
 
     client21:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client21/k3s:/var/lib/rancher/k3s
+        - ./client-data/client21/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client21/kubelet:/var/lib/kubelet
+        - ./client-data/client21/liqo:/var/lib/liqo
+        - ./client-data/client21/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
+         
 
     client22:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client22/k3s:/var/lib/rancher/k3s
+        - ./client-data/client22/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client22/kubelet:/var/lib/kubelet
+        - ./client-data/client22/liqo:/var/lib/liqo
+        - ./client-data/client22/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
+         
 
     client23:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client23/k3s:/var/lib/rancher/k3s
+        - ./client-data/client23/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client23/kubelet:/var/lib/kubelet
+        - ./client-data/client23/liqo:/var/lib/liqo
+        - ./client-data/client23/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
+         
 
     client24:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client24/k3s:/var/lib/rancher/k3s
+        - ./client-data/client24/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client24/kubelet:/var/lib/kubelet
+        - ./client-data/client24/liqo:/var/lib/liqo
+        - ./client-data/client24/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
+         
 
     client25:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client25/k3s:/var/lib/rancher/k3s
+        - ./client-data/client25/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client25/kubelet:/var/lib/kubelet
+        - ./client-data/client25/liqo:/var/lib/liqo
+        - ./client-data/client25/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
+         
 
     client26:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client26/k3s:/var/lib/rancher/k3s
+        - ./client-data/client26/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client26/kubelet:/var/lib/kubelet
+        - ./client-data/client26/liqo:/var/lib/liqo
+        - ./client-data/client26/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
+         
 
     client27:
       kind: linux
-      image: hamidhrf/k3s-client:latest
+      image: hamidhrf/k3s-client:v2
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./client-data/client27/k3s:/var/lib/rancher/k3s
+        - ./client-data/client27/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client27/kubelet:/var/lib/kubelet
+        - ./client-data/client27/liqo:/var/lib/liqo
+        - ./client-data/client27/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared/token:/shared/token     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         - bash /client-init.sh
-      #cmd: "bash -c '/client-init.sh & sleep infinity'"
+         
 
   links:
     - endpoints: ["router1:eth1", "router2:eth1"]
@@ -530,7 +772,6 @@ topology:
     - endpoints: ["client5:eth1", "switch1:eth7"]
     - endpoints: ["client6:eth1", "switch1:eth8"]
     - endpoints: ["Edge_server1:eth1", "switch1:eth2"]
-
     - endpoints: ["client27:eth1", "switch1:eth9"]
     # Router 2 Connections
     - endpoints: ["router2:eth2", "router6:eth1"]
@@ -564,7 +805,6 @@ topology:
     - endpoints: ["router7:eth3", "switch4:eth1"]
     # Switch 4 Connections
     - endpoints: ["switch4:eth2", "Edge_server6:eth1"]
-    
     # Router 8 Connections
     - endpoints: ["router8:eth2", "router9:eth2"]
     # Router 9 Connections
@@ -582,6 +822,6 @@ topology:
     - endpoints: ["switch5:eth10", "client24:eth1"]
     - endpoints: ["switch5:eth11", "client25:eth1"]
     - endpoints: ["switch5:eth12", "Edge_server8:eth1"]
-    #- endpoints: ["router8:eth3", "macvlan:vmnet8"]
     - endpoints: ["switch5:eth13", "client26:eth1"]
+    #- endpoints: ["router8:eth3", "macvlan:vmnet8"]
     
