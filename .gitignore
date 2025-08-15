@@ -35,3 +35,13 @@ venv/
 # Ignore any docker image archives
 *.img
 *.iso
+
+# Containerlab runtime state
+clab-*/
+
+# All per-client runtime data (k3s/kubelet/containerd, certs, secrets, logs)
+client-data/
+
+# Logs and dumps
+*.log
+*.log.gz

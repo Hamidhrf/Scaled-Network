@@ -1,3 +1,5 @@
+
+# yaml-language-server: $schema=https://raw.githubusercontent.com/srl-labs/containerlab/main/tools/clab-schema.json
 name: frr01
 
 topology:
@@ -80,7 +82,8 @@ topology:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
     Edge_server2:
       kind: linux
       image: testing954/server2:latest
@@ -88,7 +91,8 @@ topology:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
     Edge_server3:
       kind: linux
       image: testing954/server3:latest
@@ -96,7 +100,8 @@ topology:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
     Edge_server4:
       kind: linux
       image: testing954/server4:latest
@@ -104,7 +109,8 @@ topology:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
     Edge_server5:
       kind: linux
       image: testing954/server5:latest
@@ -112,7 +118,8 @@ topology:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
     Edge_server6:
       kind: linux
       image: testing954/server6:latest
@@ -120,7 +127,8 @@ topology:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
     Edge_server7:
       kind: linux
       image: testing954/server7:latest
@@ -128,7 +136,8 @@ topology:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
     Edge_server8:
       kind: linux
       image: testing954/server8:latest
@@ -136,10 +145,11 @@ topology:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
     client1:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -152,17 +162,18 @@ topology:
         - ./client-data/client1/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro
-        - ./shared/token:/shared/token      
+        - ./shared:/shared      
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
-         
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
+
       
     client2:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -175,17 +186,18 @@ topology:
         - ./client-data/client2/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
      
     client3:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -198,17 +210,18 @@ topology:
         - ./client-data/client3/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
       
     client4:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -221,17 +234,18 @@ topology:
         - ./client-data/client4/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
       
     client5:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -244,17 +258,18 @@ topology:
         - ./client-data/client5/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
     
     client6:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -267,17 +282,18 @@ topology:
         - ./client-data/client6/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
      
     client7:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -290,17 +306,18 @@ topology:
         - ./client-data/client7/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
       
     client8:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -313,17 +330,18 @@ topology:
         - ./client-data/client8/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
      
     client9:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -336,17 +354,18 @@ topology:
         - ./client-data/client9/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
       
     client10:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -359,17 +378,18 @@ topology:
         - ./client-data/client10/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
  
     client11:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -382,17 +402,18 @@ topology:
         - ./client-data/client11/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
 
     client12:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -405,17 +426,18 @@ topology:
         - ./client-data/client12/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
 
     client13:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -428,17 +450,18 @@ topology:
         - ./client-data/client13/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
 
     client14:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -451,17 +474,18 @@ topology:
         - ./client-data/client14/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
 
     client15:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -474,17 +498,18 @@ topology:
         - ./client-data/client15/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
 
     client16:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -497,17 +522,18 @@ topology:
         - ./client-data/client16/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
 
     client17:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -520,17 +546,18 @@ topology:
         - ./client-data/client17/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
 
     client18:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -543,17 +570,18 @@ topology:
         - ./client-data/client18/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
 
     client19:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -566,17 +594,18 @@ topology:
         - ./client-data/client19/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
 
     client20:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -589,17 +618,18 @@ topology:
         - ./client-data/client20/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
 
     client21:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -612,17 +642,18 @@ topology:
         - ./client-data/client21/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
 
     client22:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -635,17 +666,18 @@ topology:
         - ./client-data/client22/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
 
     client23:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -658,17 +690,18 @@ topology:
         - ./client-data/client23/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
 
     client24:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -681,17 +714,18 @@ topology:
         - ./client-data/client24/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
 
     client25:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -704,17 +738,18 @@ topology:
         - ./client-data/client25/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
 
     client26:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -726,18 +761,19 @@ topology:
         - ./client-data/client26/liqo:/var/lib/liqo
         - ./client-data/client26/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        - ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
 
     client27:
       kind: linux
-      image: hamidhrf/k3s-client:v2
+      image: hamidhrf/k3s-client:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -750,12 +786,13 @@ topology:
         - ./client-data/client27/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
         #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
-        - ./shared/token:/shared/token     
+        - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
-        - bash /client-init.sh
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
          
 
   links:
