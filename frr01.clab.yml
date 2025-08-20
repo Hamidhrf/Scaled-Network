@@ -81,6 +81,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
       exec:
         #- bash /client-init.sh
         - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
@@ -90,6 +91,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
       exec:
         #- bash /client-init.sh
         - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
@@ -99,6 +101,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
       exec:
         #- bash /client-init.sh
         - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
@@ -108,6 +111,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
       exec:
         #- bash /client-init.sh
         - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
@@ -117,6 +121,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
       exec:
         #- bash /client-init.sh
         - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
@@ -126,6 +131,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
       exec:
         #- bash /client-init.sh
         - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
@@ -135,6 +141,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
       exec:
         #- bash /client-init.sh
         - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
@@ -144,6 +151,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
       exec:
         #- bash /client-init.sh
         - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
@@ -155,6 +163,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client1/k3s:/var/lib/rancher/k3s
         - ./client-data/client1/etc-rancher:/etc/rancher/k3s
         - ./client-data/client1/kubelet:/var/lib/kubelet
@@ -179,6 +188,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client2/k3s:/var/lib/rancher/k3s
         - ./client-data/client2/etc-rancher:/etc/rancher/k3s
         - ./client-data/client2/kubelet:/var/lib/kubelet
@@ -203,6 +213,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client3/k3s:/var/lib/rancher/k3s
         - ./client-data/client3/etc-rancher:/etc/rancher/k3s
         - ./client-data/client3/kubelet:/var/lib/kubelet
@@ -227,6 +238,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client4/k3s:/var/lib/rancher/k3s
         - ./client-data/client4/etc-rancher:/etc/rancher/k3s
         - ./client-data/client4/kubelet:/var/lib/kubelet
@@ -251,6 +263,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client5/k3s:/var/lib/rancher/k3s
         - ./client-data/client5/etc-rancher:/etc/rancher/k3s
         - ./client-data/client5/kubelet:/var/lib/kubelet
@@ -275,6 +288,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client6/k3s:/var/lib/rancher/k3s
         - ./client-data/client6/etc-rancher:/etc/rancher/k3s
         - ./client-data/client6/kubelet:/var/lib/kubelet
@@ -299,6 +313,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client7/k3s:/var/lib/rancher/k3s
         - ./client-data/client7/etc-rancher:/etc/rancher/k3s
         - ./client-data/client7/kubelet:/var/lib/kubelet
@@ -323,6 +338,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client8/k3s:/var/lib/rancher/k3s
         - ./client-data/client8/etc-rancher:/etc/rancher/k3s
         - ./client-data/client8/kubelet:/var/lib/kubelet
@@ -347,6 +363,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client9/k3s:/var/lib/rancher/k3s
         - ./client-data/client9/etc-rancher:/etc/rancher/k3s
         - ./client-data/client9/kubelet:/var/lib/kubelet
@@ -371,6 +388,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client10/k3s:/var/lib/rancher/k3s
         - ./client-data/client10/etc-rancher:/etc/rancher/k3s
         - ./client-data/client10/kubelet:/var/lib/kubelet
@@ -395,6 +413,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client11/k3s:/var/lib/rancher/k3s
         - ./client-data/client11/etc-rancher:/etc/rancher/k3s
         - ./client-data/client11/kubelet:/var/lib/kubelet
@@ -419,6 +438,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client12/k3s:/var/lib/rancher/k3s
         - ./client-data/client12/etc-rancher:/etc/rancher/k3s
         - ./client-data/client12/kubelet:/var/lib/kubelet
@@ -443,6 +463,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client13/k3s:/var/lib/rancher/k3s
         - ./client-data/client13/etc-rancher:/etc/rancher/k3s
         - ./client-data/client13/kubelet:/var/lib/kubelet
@@ -467,6 +488,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client14/k3s:/var/lib/rancher/k3s
         - ./client-data/client14/etc-rancher:/etc/rancher/k3s
         - ./client-data/client14/kubelet:/var/lib/kubelet
@@ -491,6 +513,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client15/k3s:/var/lib/rancher/k3s
         - ./client-data/client15/etc-rancher:/etc/rancher/k3s
         - ./client-data/client15/kubelet:/var/lib/kubelet
@@ -515,6 +538,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client16/k3s:/var/lib/rancher/k3s
         - ./client-data/client16/etc-rancher:/etc/rancher/k3s
         - ./client-data/client16/kubelet:/var/lib/kubelet
@@ -539,6 +563,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client17/k3s:/var/lib/rancher/k3s
         - ./client-data/client17/etc-rancher:/etc/rancher/k3s
         - ./client-data/client17/kubelet:/var/lib/kubelet
@@ -563,6 +588,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client18/k3s:/var/lib/rancher/k3s
         - ./client-data/client18/etc-rancher:/etc/rancher/k3s
         - ./client-data/client18/kubelet:/var/lib/kubelet
@@ -587,6 +613,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client19/k3s:/var/lib/rancher/k3s
         - ./client-data/client19/etc-rancher:/etc/rancher/k3s
         - ./client-data/client19/kubelet:/var/lib/kubelet
@@ -611,6 +638,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client20/k3s:/var/lib/rancher/k3s
         - ./client-data/client20/etc-rancher:/etc/rancher/k3s
         - ./client-data/client20/kubelet:/var/lib/kubelet
@@ -635,6 +663,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client21/k3s:/var/lib/rancher/k3s
         - ./client-data/client21/etc-rancher:/etc/rancher/k3s
         - ./client-data/client21/kubelet:/var/lib/kubelet
@@ -659,6 +688,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client22/k3s:/var/lib/rancher/k3s
         - ./client-data/client22/etc-rancher:/etc/rancher/k3s
         - ./client-data/client22/kubelet:/var/lib/kubelet
@@ -683,6 +713,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client23/k3s:/var/lib/rancher/k3s
         - ./client-data/client23/etc-rancher:/etc/rancher/k3s
         - ./client-data/client23/kubelet:/var/lib/kubelet
@@ -707,6 +738,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client24/k3s:/var/lib/rancher/k3s
         - ./client-data/client24/etc-rancher:/etc/rancher/k3s
         - ./client-data/client24/kubelet:/var/lib/kubelet
@@ -731,6 +763,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client25/k3s:/var/lib/rancher/k3s
         - ./client-data/client25/etc-rancher:/etc/rancher/k3s
         - ./client-data/client25/kubelet:/var/lib/kubelet
@@ -755,6 +788,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client26/k3s:/var/lib/rancher/k3s
         - ./client-data/client26/etc-rancher:/etc/rancher/k3s
         - ./client-data/client26/kubelet:/var/lib/kubelet
@@ -779,6 +813,7 @@ topology:
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
         - ./client-data/client27/k3s:/var/lib/rancher/k3s
         - ./client-data/client27/etc-rancher:/etc/rancher/k3s
         - ./client-data/client27/kubelet:/var/lib/kubelet

@@ -1,474 +1,201 @@
-# # #!/bin/bash
-
-# HOSTNAME=$(hostname)
-# CONFIG_FILE="/ip-mapping.txt"
-
-# echo "[INIT] Configuring IP for $HOSTNAME using $CONFIG_FILE"
-
-# while read name ip gw; do
-#   if [ "$HOSTNAME" = "$name" ]; then
-#     echo "[INIT] Setting IP $ip with GW $gw on eth1"
-#     ip link set dev eth1 up
-#     ip addr flush dev eth1
-#     ip route flush table main
-#     ip addr add "$ip" dev eth1
-#     ip route add 10.0.0.0/8 via "$gw" dev eth1
-#     echo "[INIT] Done."
-#     exit 0
-#   fi
-# done < "$CONFIG_FILE"
-
-# echo "[INIT] No IP mapping found for $HOSTNAME"
-# exit 1
-
 
 #!/usr/bin/env bash
-# set -e
+set -Eeuo pipefail
 
-# HOSTNAME=$(hostname)
-# CFG="/ip-mapping.txt"
+# ──────────────────────────────────────────────────────────────────────────────
+# about container
+# ──────────────────────────────────────────────────────────────────────────────
+HOSTNAME="$(hostname)"
+IFACE_DATA="eth1"                       # lab/data interface (10.0.x.x side)
+IFACE_API="eth0"                        # Docker network interface (172.20.20.x)
+CFG="/ip-mapping.txt"                   # "<node> <cidr> <gw>" lines
 
-# ###############################################################################
-# # 1. ── Network (IP + MTU 1400 + overlay + DNS + default GW) ──────────────────
-# ###############################################################################
-# while read name ip gw; do
-#   if [ "$HOSTNAME" = "$name" ]; then
-#     ip link set eth1 up
-#     ip addr flush dev eth1
-#     ip addr add "$ip" dev eth1
-#     ip link set eth1 mtu 1400
-#     ip route add 10.0.0.0/8 via "$gw" dev eth1
-
-#     # keep Docker’s original default route for Internet access
-#     DEF_GW=$(ip route | awk '/default/ {print $3; exit}')
-#     ip route replace default via "$DEF_GW" dev eth0 metric 100
-
-#     # real resolver
-#     printf 'nameserver 1.1.1.1\nnameserver 8.8.8.8\n' > /etc/resolv.conf
-#     break
-#   fi
-# done < "$CFG"
-
-# ###############################################################################
-# # 2. ── K3s + Liqo only for “client*” nodes ───────────────────────────────────
-# ###############################################################################
-# case "$HOSTNAME" in
-#   client*)
-#     HUB="client26"
-#     HUB_IP="10.0.2.216"
-#     CHART="/liqo-chart.tgz"
-#     TOKEN_FILE="/shared/token"
-
-#     if [ "$HOSTNAME" = "$HUB" ]; then
-#       # ─── Hub: K3s server ────────────────────────────────────────────────
-#       if [ ! -S /run/k3s/k3s.sock ]; then
-#         echo "[INIT] starting K3s server on hub"
-#         k3s server --disable traefik --node-name "$HUB" \
-#                    >/tmp/k3s.log 2>&1 &
-#       fi
-#       # wait until API answers, then export the join-token
-#       until k3s kubectl get nodes >/dev/null 2>&1; do sleep 2; done
-#       cat /var/lib/rancher/k3s/server/node-token > "$TOKEN_FILE"
-
-#     else
-#       # ─── Spoke: wait up to 300 s for token, then start agent ────────────
-#       for _ in $(seq 1 150); do
-#         [ -s "$TOKEN_FILE" ] && break
-#         sleep 2
-#       done
-#       TOKEN=$(cat "$TOKEN_FILE" 2>/dev/null || true)
-#       if [ -n "$TOKEN" ] && [ ! -S /run/k3s/agent.sock ]; then
-#         echo "[INIT] starting K3s agent on $HOSTNAME"
-#         k3s agent --server "https://${HUB_IP}:6443" --token "$TOKEN" \
-#                   --node-name "$HOSTNAME" >/tmp/k3s.log 2>&1 &
-#       fi
-#       # wait up to 300 s for kubeconfig so Liqo can use it
-#       for _ in $(seq 1 150); do
-#         [ -f /etc/rancher/k3s/k3s.yaml ] && break
-#         sleep 2
-#       done
-#     fi
-
-#     # ── Install Liqo (idempotent; skips if already present) ────────────────
-#     if ! k3s kubectl -n liqo get deploy liqo-controller-manager \
-#           >/dev/null 2>&1; then
-#       echo "[INIT] installing Liqo on $HOSTNAME"
-#       if [ "$HOSTNAME" = "$HUB" ]; then
-#         liqoctl install k3s --cluster-id "$HOSTNAME" \
-#           --disable-kernel-version-check --disable-telemetry --skip-confirm \
-#           --kubeconfig /etc/rancher/k3s/k3s.yaml \
-#           --local-chart-path "$CHART"
-#       else
-#         liqoctl install k3s --cluster-id "$HOSTNAME" \
-#           --disable-kernel-version-check --disable-telemetry --skip-confirm \
-#           --kubeconfig /etc/rancher/k3s/k3s.yaml
-#         liqoctl peer --cluster-id "$HUB" --gateway "$HUB_IP" --skip-confirm \
-#           --kubeconfig /etc/rancher/k3s/k3s.yaml || true
-#       fi
-#     fi
-#     ;;
-#   *)
-#     echo "[INIT] $HOSTNAME is not in the client ring – skipping K3s/Liqo"
-#     ;;
-# esac
-
-# echo "[INIT] done on $HOSTNAME"
-# exit 0
-
-
-
-# #!/usr/bin/env bash
-# set -e
-
-# HOSTNAME=$(hostname)
-# CFG="/ip-mapping.txt"
-
-# ###############################################################################
-# # 0. ── Common vars for K3s ───────────────────────────────────────────────────
-# ###############################################################################
-# IFACE="eth1"                                                    # ►❶
-# NODE_IP=$(ip -4 -o addr show dev "$IFACE" | awk '{print $4}' | cut -d/ -f1)  # ►❶
-
-# ###############################################################################
-# # 1. ── Network (IP + MTU 1400 + overlay + DNS + default GW) ──────────────────
-# ###############################################################################
-# while read name ip gw; do
-#   if [ "$HOSTNAME" = "$name" ]; then
-#     ip link set $IFACE up
-#     ip addr flush dev $IFACE
-#     ip addr add "$ip" dev $IFACE
-#     ip link set $IFACE mtu 1400
-#     ip route add 10.0.0.0/8 via "$gw" dev $IFACE
-
-#     # keep Docker’s original default route for Internet access
-#     DEF_GW=$(ip route | awk '/default/ {print $3; exit}')
-#     ip route replace default via "$DEF_GW" dev eth0 metric 100
-
-#     # real resolver
-#     printf 'nameserver 1.1.1.1\nnameserver 8.8.8.8\n' > /etc/resolv.conf
-#     break
-#   fi
-# done < "$CFG"
-
-# ###############################################################################
-# # 2. ── K3s + Liqo only for “client*” nodes ───────────────────────────────────
-# ###############################################################################
-# case "$HOSTNAME" in
-#   client*)
-#     HUB="client26"
-#     HUB_IP="10.0.2.216"
-#     CHART="/liqo-chart.tgz"
-#     TOKEN_FILE="/shared/token"
-
-#     if [ "$HOSTNAME" = "$HUB" ]; then
-#       # ─── Hub: K3s server ────────────────────────────────────────────────
-#       if [ ! -S /run/k3s/k3s.sock ]; then
-#         echo "[INIT] starting K3s server on hub"
-#         k3s server \
-#           --disable traefik \
-#           --flannel-iface        "$IFACE" \                    # ►❷
-#           --advertise-address    "$NODE_IP" \                  # ►❷
-#           --node-ip              "$NODE_IP" \                  # ►❷
-#           --node-external-ip     "$NODE_IP" \                  # ►❷
-#           --node-name            "$HOSTNAME" \
-#           -v 2 >/tmp/k3s.log 2>&1 &
-#       fi
-#       # wait until API answers, then export the join-token
-#       until k3s kubectl get nodes >/dev/null 2>&1; do sleep 2; done
-#       cat /var/lib/rancher/k3s/server/node-token > "$TOKEN_FILE"
-
-#     else
-#       # ─── Spoke: wait up to 300 s for token, then start agent ───────────
-#       for _ in $(seq 1 150); do
-#         [ -s "$TOKEN_FILE" ] && break
-#         sleep 2
-#       done
-#       TOKEN=$(cat "$TOKEN_FILE" 2>/dev/null || true)
-#       if [ -n "$TOKEN" ] && [ ! -S /run/k3s/agent.sock ]; then
-#         echo "[INIT] starting K3s agent on $HOSTNAME"
-#         k3s agent \
-#           --server "https://${HUB_IP}:6443" \
-#           --token  "$TOKEN" \
-#           --flannel-iface     "$IFACE" \                       # ►❸
-#           --node-ip           "$NODE_IP" \                     # ►❸
-#           --node-external-ip  "$NODE_IP" \                     # ►❸
-#           --node-name         "$HOSTNAME" \
-#           -v 2 >/tmp/k3s.log 2>&1 &
-#       fi
-#       # wait up to 300 s for kubeconfig so Liqo can use it
-#       for _ in $(seq 1 150); do
-#         [ -f /etc/rancher/k3s/k3s.yaml ] && break
-#         sleep 2
-#       done
-#     fi
-
-#     # ── Install Liqo (idempotent; skips if already present) ────────────────
-#     if ! k3s kubectl -n liqo get deploy liqo-controller-manager \
-#           >/dev/null 2>&1; then
-#       echo "[INIT] installing Liqo on $HOSTNAME"
-#       if [ "$HOSTNAME" = "$HUB" ]; then
-#         liqoctl install k3s --cluster-id "$HOSTNAME" \
-#           --disable-kernel-version-check --disable-telemetry --skip-confirm \
-#           --kubeconfig /etc/rancher/k3s/k3s.yaml \
-#           --local-chart-path "$CHART"
-#       else
-#         liqoctl install k3s --cluster-id "$HOSTNAME" \
-#           --disable-kernel-version-check --disable-telemetry --skip-confirm \
-#           --kubeconfig /etc/rancher/k3s/k3s.yaml
-#         liqoctl peer --cluster-id "$HUB" --gateway "$HUB_IP" --skip-confirm \
-#           --kubeconfig /etc/rancher/k3s/k3s.yaml || true
-#       fi
-#     fi
-#     ;;
-#   *)
-#     echo "[INIT] $HOSTNAME is not in the client ring – skipping K3s/Liqo"
-#     ;;
-# esac
-
-# echo "[INIT] done on $HOSTNAME"
-# exit 0
-
-
-# #!/usr/bin/env bash
-# set -euo pipefail
-
-# HOSTNAME=$(hostname)
-# CFG="/ip-mapping.txt"          # <node> <ip/mask> <gw>
-
-# ###############################################################################
-# # 0. ── Common vars
-# ###############################################################################
-# IFACE="eth1"                   # data-plane interface
-# NODE_IP=""                     # filled after we configure $IFACE
-# HUB="client26"
-# HUB_IP="10.0.2.216"
-# CHART="/liqo-chart.tgz"
-# TOKEN_FILE="/shared/token"
-
-# ###############################################################################
-# # 1. ── Network (IP + MTU + overlay + DNS + default-GW)
-# ###############################################################################
-# # wait until Containerlab has attached the eth1 link
-# for _ in {1..40}; do
-#   ip link show "${IFACE}" &>/dev/null && break
-#   sleep 0.5
-# done
-
-# while read -r name ip gw; do
-#   if [[ "$HOSTNAME" == "$name" ]]; then
-#     ip link set "$IFACE" up
-#     ip addr flush dev "$IFACE"
-#     ip addr add "$ip" dev "$IFACE"
-#     NODE_IP=${ip%%/*}                       # strip “/mask”
-#     ip link set "$IFACE" mtu 1400
-#     ip route add 10.0.0.0/8 via "$gw" dev "$IFACE"
-
-#     # keep Docker’s default route for Internet access
-#     DEF_GW=$(ip route | awk '/default/ {print $3; exit}')
-#     ip route replace default via "$DEF_GW" dev eth0 metric 100
-
-#     # public resolvers (no immutable flag anymore)
-#     printf 'nameserver 1.1.1.1\nnameserver 8.8.8.8\n' > /etc/resolv.conf
-#     break
-#   fi
-# done < "$CFG"
-
-# ###############################################################################
-# # 2. ── K3s + Liqo (clients only)
-# ###############################################################################
-# case "$HOSTNAME" in
-#   client*)
-#     if [[ "$HOSTNAME" == "$HUB" ]]; then
-#       # ── Hub (server) ──────────────────────────────────────────────────────
-#       if [[ ! -S /run/k3s/k3s.sock ]]; then
-#         echo "[INIT] starting K3s server on $HOSTNAME"
-#         k3s server \
-#           --disable traefik \
-#           --flannel-iface "$IFACE" \
-#           --advertise-address "$NODE_IP" \
-#           --node-ip "$NODE_IP" \
-#           --node-external-ip "$NODE_IP" \
-#           --node-name "$HOSTNAME" \
-#           -v 2 >/tmp/k3s.log 2>&1 &
-#       fi
-
-#       # wait for API, then publish the join-token atomically
-#       until k3s kubectl get nodes >/dev/null 2>&1; do sleep 2; done
-#       cp /var/lib/rancher/k3s/server/node-token "$TOKEN_FILE"
-#       chmod 666 "$TOKEN_FILE"
-
-#       # give the API a small head-start before agents rush in
-#       sleep 10
-
-#     else
-#       # ── Spoke (agent) ─────────────────────────────────────────────────────
-#       # wait until the hub has written the token
-#       for _ in $(seq 1 150); do
-#         [[ -s "$TOKEN_FILE" ]] && break
-#         sleep 2
-#       done
-
-#       TOKEN="$(cat "$TOKEN_FILE" 2>/dev/null || true)"
-
-#       # wait until the API is reachable
-#       until curl -sk --max-time 2 "https://${HUB_IP}:6443/healthz" \
-#               | grep -q '^ok'; do
-#         sleep "$(shuf -i 1-4 -n 1)"            # random 1-4 s back-off
-#       done
-
-#       if [[ -n "$TOKEN" && ! -S /run/k3s/agent.sock ]]; then
-#         echo "[INIT] starting K3s agent on $HOSTNAME"
-#         k3s agent \
-#           --server "https://${HUB_IP}:6443" \
-#           --token "$TOKEN" \
-#           --flannel-iface "$IFACE" \
-#           --node-ip "$NODE_IP" \
-#           --node-external-ip "$NODE_IP" \
-#           --node-name "$HOSTNAME" \
-#           -v 2 >/tmp/k3s.log 2>&1 &
-#       fi
-
-#       # wait up to 5 min for kubeconfig so Liqo can consume it
-#       for _ in $(seq 1 150); do
-#         [[ -f /etc/rancher/k3s/k3s.yaml ]] && break
-#         sleep 2
-#       done
-#     fi
-
-#     # ── Liqo (idempotent) ───────────────────────────────────────────────────
-#     if ! k3s kubectl -n liqo get deploy liqo-controller-manager >/dev/null 2>&1; then
-#       echo "[INIT] installing Liqo on $HOSTNAME"
-#       if [[ "$HOSTNAME" == "$HUB" ]]; then
-#         liqoctl install k3s --cluster-id "$HOSTNAME" \
-#           --disable-kernel-version-check --disable-telemetry --skip-confirm \
-#           --kubeconfig /etc/rancher/k3s/k3s.yaml \
-#           --local-chart-path "$CHART"
-#       else
-#         liqoctl install k3s --cluster-id "$HOSTNAME" \
-#           --disable-kernel-version-check --disable-telemetry --skip-confirm \
-#           --kubeconfig /etc/rancher/k3s/k3s.yaml
-#         # peer with the hub (ignore “already peered” errors)
-#         liqoctl peer --cluster-id "$HUB" --gateway "$HUB_IP" --overwrite \
-#           --skip-confirm --kubeconfig /etc/rancher/k3s/k3s.yaml || true
-#       fi
-#     fi
-#     ;;
-#   *)
-#     echo "[INIT] $HOSTNAME is not in the client ring – skipping K3s/Liqo"
-#     ;;
-# esac
-
-# echo "[INIT] done on $HOSTNAME"
-# exit 0
-
-
-#!/usr/bin/env bash
-set -euo pipefail
-
-HOSTNAME=$(hostname)
-CFG="/ip-mapping.txt"          # <node> <ip/mask> <gw>
-
-# ── Common vars ────────────────────────────────────────────────────────────────
-IFACE="eth1"
-NODE_IP=""
-HUB="client26"
-HUB_IP="10.0.2.216"            # (kept for reference; not used by liqoctl peer)
-CHART="/liqo-chart.tgz"
+# k3s / liqo bits
 KCFG="/etc/rancher/k3s/k3s.yaml"
-HUB_KCFG="/shared/hub.kubeconfig"
+LOG="/tmp/k3s.log"
+CHART="/liqo-chart.tgz"                 # optional: pre-bundled chart
+HUB="client26"
+SHARED_DIR="/shared"
+HUB_KCFG="${SHARED_DIR}/hub.kubeconfig"
 
-# ── 1) Network ────────────────────────────────────────────────────────────────
-for _ in {1..60}; do
-  ip link show "${IFACE}" &>/dev/null && break
-  sleep 0.5
-done
+# Peering allowlist (persisted in /shared/peering-config.txt)
+PEERING_CONFIG_FILE="/peering-config.txt"
+DEFAULT_PEERS_TO_HUB="client1 client2 client3 client4 client5 client6 client7 client8 client9 client10"
 
-while read -r name ip gw; do
+# ──────────────────────────────────────────────────────────────────────────────
+# helpers
+# ──────────────────────────────────────────────────────────────────────────────
+log() { echo "[INIT] $*"; }
+ip4_of() { ip -4 -o addr show dev "$1" | awk '{print $4}' | cut -d/ -f1; }
+
+should_peer_to_hub() {
+  local peers
+  if [[ -f "$PEERING_CONFIG_FILE" ]]; then
+    peers="$(cat "$PEERING_CONFIG_FILE")"
+  else
+    peers="$DEFAULT_PEERS_TO_HUB"
+    echo "$peers" > "$PEERING_CONFIG_FILE"
+  fi
+  grep -Eq "(^|[[:space:]])${HOSTNAME}([[:space:]]|$)" <<<"$peers"
+}
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 1) Configure the data interface (eth1) from ip-mapping.txt
+# ──────────────────────────────────────────────────────────────────────────────
+for _ in {1..60}; do ip link show "$IFACE_DATA" &>/dev/null && break; sleep 0.5; done
+
+NODE_IP_DATA=""
+while read -r name cidr gw; do
+  [[ -z "${name:-}" || "$name" =~ ^# ]] && continue
   if [[ "$HOSTNAME" == "$name" ]]; then
-    ip link set "$IFACE" up
-    ip addr flush dev "$IFACE"
-    ip addr add "$ip" dev "$IFACE"
-    NODE_IP=${ip%%/*}
-    ip link set "$IFACE" mtu 1400
-    ip route add 10.0.0.0/8 via "$gw" dev "$IFACE" || true
-
-    # keep Docker's default internet route on eth0
-    DEF_GW=$(ip route | awk '/default/ {print $3; exit}')
-    ip route replace default via "$DEF_GW" dev eth0 metric 100 || true
-
+    ip link set "$IFACE_DATA" up
+    ip addr flush dev "$IFACE_DATA" || true
+    ip addr add "$cidr" dev "$IFACE_DATA"
+    NODE_IP_DATA="${cidr%%/*}"
+    ip link set "$IFACE_DATA" mtu 1400 || true
+    ip route replace 10.0.0.0/8 via "$gw" dev "$IFACE_DATA" || true
+    # keep Docker default internet route via eth0 (low metric already)
     printf 'nameserver 1.1.1.1\nnameserver 8.8.8.8\n' > /etc/resolv.conf
     break
   fi
 done < "$CFG"
 
-# ── 2) K3s + Liqo per client (each client is its own cluster) ────────────────
-case "$HOSTNAME" in
-  client*)
-    # Start K3s server if not up (idempotent)
-    if [[ ! -S /run/k3s/k3s.sock ]]; then
-      echo "[INIT] starting K3s server on $HOSTNAME"
-      k3s server \
-        --disable traefik \
-        --flannel-iface "$IFACE" \
-        --advertise-address "$NODE_IP" \
-        --node-ip "$NODE_IP" \
-        --node-external-ip "$NODE_IP" \
-        --node-name "$HOSTNAME" \
-        -v 2 >>/tmp/k3s.log 2>&1 &
-    fi
+if [[ -z "$NODE_IP_DATA" ]]; then
+  log "ERROR: could not find $HOSTNAME in $CFG"; exit 1
+fi
 
-    # Wait for API + kubeconfig
-    for _ in $(seq 1 180); do
-      if [[ -f "$KCFG" ]] && k3s kubectl get nodes >/dev/null 2>&1; then
+# ──────────────────────────────────────────────────────────────────────────────
+# k3s single-node server (lean) — start if not already running
+# - API is reachable on the container's "API iface" (default eth0)
+# - Data plane uses flannel host-gw on the inter-client iface (default eth1)
+# - TLS cert includes the API IP so other containers can use this kubeconfig
+# - Traefik/metrics-server/servicelb disabled to keep it light
+# ──────────────────────────────────────────────────────────────────────────────
+
+# helper: first IPv4 of an interface
+ip4_of() { ip -4 -o addr show dev "$1" 2>/dev/null | awk '{print $4}' | cut -d/ -f1 | head -n1; }
+
+LOG="/tmp/k3s.log"
+KCFG="/etc/rancher/k3s/k3s.yaml"
+
+# pick interfaces (override earlier in the script if you want)
+IFACE_API="${IFACE_API:-eth0}"   # how other containers reach this API
+IFACE_DATA="${IFACE_DATA:-eth1}" # inter-client data network (flannel)
+
+API_IP="$(ip4_of "$IFACE_API")"
+NODE_IP_DATA="$(ip4_of "$IFACE_DATA")"
+
+# fallbacks if IFACE_DATA is missing on this client
+if [ -z "$NODE_IP_DATA" ]; then
+  NODE_IP_DATA="$API_IP"
+fi
+
+if ! pgrep -f "k3s server" >/dev/null 2>&1; then
+  # NOTE: do not delete bind-mounted dirs here; wipe them on the HOST before deploy
+  export K3S_KUBECONFIG_MODE=644
+
+  nohup k3s server \
+    --node-name "$HOSTNAME" \
+    --node-ip "$NODE_IP_DATA" \
+    --advertise-address "$API_IP" \
+    --tls-san "$API_IP" \
+    --flannel-iface "$IFACE_DATA" \
+    --flannel-backend host-gw \
+    --disable traefik \
+    --disable metrics-server \
+    --disable servicelb \
+    --write-kubeconfig-mode 0644 \
+    --debug >"$LOG" 2>&1 &
+
+  echo "[INIT] starting k3s (API_IP=${API_IP}, NODE_IP=${NODE_IP_DATA}, IFACES api=${IFACE_API} data=${IFACE_DATA})"
+else
+  echo "[INIT] k3s already running"
+fi
+
+# wait for API to listen on 6443
+printf "[INIT] waiting for API (6443) ... "
+for n in $(seq 1 180); do
+  ss -lnt 2>/dev/null | grep -q ":6443" && { echo ok; break; }
+  sleep 1
+done
+
+# wait for node Ready (first boot can take a bit)
+printf "[INIT] waiting for node Ready ... "
+if k3s kubectl --kubeconfig "$KCFG" wait --for=condition=Ready node --all --timeout=300s >/dev/null 2>&1; then
+  echo ok
+else
+  echo timeout
+  echo "[INIT] last 120 lines of $LOG:"
+  tail -n 120 "$LOG" || true
+fi
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 3) HUB only: publish a reachable kubeconfig for spokes
+# ──────────────────────────────────────────────────────────────────────────────
+if [[ "$HOSTNAME" == "$HUB" ]]; then
+  # copy and rewrite the server URL to use the container's eth0 IP:6443
+  if [[ -s "$KCFG" ]]; then
+    mkdir -p "$SHARED_DIR"
+    sed "s#https://127.0.0.1:6443#https://${API_IP}:6443#g" "$KCFG" > "$HUB_KCFG"
+    chmod 0644 "$HUB_KCFG"
+    log "hub kubeconfig published at $HUB_KCFG (server=https://${API_IP}:6443)"
+  else
+    log "WARNING: $KCFG not found yet; hub kubeconfig not published"
+  fi
+fi
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 4) Install Liqo (idempotent). Use the k3s-specific installer and current flags.
+#    - cluster id = hostname
+#    - skip kernel check if needed; skip confirm
+# ──────────────────────────────────────────────────────────────────────────────
+if ! k3s kubectl -n liqo get deploy liqo-controller-manager >/dev/null 2>&1; then
+  log "installing Liqo in $HOSTNAME"
+  if [[ -s "$CHART" ]]; then
+    liqoctl install k3s \
+      --cluster-id "$HOSTNAME" \
+      --disable-kernel-version-check \
+      --skip-confirm \
+      --kubeconfig "$KCFG" \
+      --local-chart-path "$CHART"
+  else
+    liqoctl install k3s \
+      --cluster-id "$HOSTNAME" \
+      --disable-kernel-version-check \
+      --skip-confirm \
+      --kubeconfig "$KCFG"
+  fi
+else
+  log "Liqo already installed"
+fi
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 5) Selective peering: only clients listed in /shared/peering-config.txt
+#    Use NodePort for the gateway service since there is no LoadBalancer.
+# ──────────────────────────────────────────────────────────────────────────────
+if [[ "$HOSTNAME" != "$HUB" ]] && should_peer_to_hub; then
+  log "$HOSTNAME is configured to peer with hub $HUB"
+  # wait for hub kubeconfig
+  for _ in {1..180}; do [[ -s "$HUB_KCFG" ]] && break; sleep 2; done
+
+  if ! k3s kubectl get foreignclusters.liqo.io "$HUB" >/dev/null 2>&1; then
+    for attempt in {1..20}; do
+      if liqoctl peer \
+            --kubeconfig "$KCFG" \
+            --remote-kubeconfig "$HUB_KCFG" \
+            --server-service-type NodePort; then
+        log "peering succeeded on attempt $attempt"
         break
+      else
+        log "peering attempt $attempt failed, retrying in 6s..."
+        sleep 6
       fi
-      sleep 2
     done
+  else
+    log "already peered with $HUB"
+  fi
+else
+  [[ "$HOSTNAME" != "$HUB" ]] && log "$HOSTNAME not in peering allowlist; skipping peering"
+fi
 
-    # On the HUB, publish kubeconfig for spokes
-    if [[ "$HOSTNAME" == "$HUB" ]]; then
-      cp -f "$KCFG" "$HUB_KCFG"
-      chmod 644 "$HUB_KCFG"
-    fi
-
-    # Install Liqo once (idempotent)
-    if ! k3s kubectl -n liqo get deploy liqo-controller-manager >/dev/null 2>&1; then
-      echo "[INIT] installing Liqo on $HOSTNAME"
-      liqoctl install k3s \
-        --cluster-id "$HOSTNAME" \
-        --disable-kernel-version-check \
-        --disable-telemetry \
-        --skip-confirm \
-        --kubeconfig "$KCFG" \
-        --local-chart-path "$CHART"
-    fi
-
-    # Spokes peer to the hub using remote kubeconfig (new syntax)
-    if [[ "$HOSTNAME" != "$HUB" ]]; then
-      # Wait for the hub kubeconfig to be published
-      for _ in $(seq 1 180); do
-        [[ -s "$HUB_KCFG" ]] && break
-        sleep 2
-      done
-
-      # if already peered, skip
-      if ! k3s kubectl get foreignclusters.liqo.io "$HUB" >/dev/null 2>&1; then
-        echo "[INIT] peering $HOSTNAME -> $HUB via kubeconfig"
-        for attempt in $(seq 1 60); do
-          if liqoctl peer \
-                --kubeconfig "$KCFG" \
-                --remote-kubeconfig "$HUB_KCFG"; then
-            echo "[INIT] peering succeeded on attempt $attempt"
-            break
-          fi
-          sleep 5
-        done
-      fi
-    fi
-    ;;
-  *)
-    echo "[INIT] $HOSTNAME is not a client* node – skipping K3s/Liqo"
-    ;;
-esac
-
-echo "[INIT] done on $HOSTNAME"
+log "done on $HOSTNAME"
