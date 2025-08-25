@@ -75,6 +75,34 @@ topology:
         - router9/daemons:/etc/frr/daemons
         - router9/frr.conf:/etc/frr/frr.conf
 
+    router10:   # between router7 and switch4
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - router10/daemons:/etc/frr/daemons
+        - router10/frr.conf:/etc/frr/frr.conf
+
+    router11:   # between router3 and switch3
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - router11/daemons:/etc/frr/daemons
+        - router11/frr.conf:/etc/frr/frr.conf
+
+    router12:   # between router4 and router5
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - router12/daemons:/etc/frr/daemons
+        - router12/frr.conf:/etc/frr/frr.conf
+
+    router13:   # between router1 and switch1
+      kind: linux
+      image: frrouting/frr:latest
+      binds:
+        - router13/daemons:/etc/frr/daemons
+        - router13/frr.conf:/etc/frr/frr.conf
+
     Edge_server1:
       kind: linux
       image: testing954/server1:latest
@@ -832,7 +860,11 @@ topology:
 
   links:
     - endpoints: ["router1:eth1", "router2:eth1"]
-    - endpoints: ["router1:eth2", "switch1:eth1"]
+    # Router 13 in between router1 and switch1
+    #- endpoints: ["router1:eth2", "switch1:eth1"]
+    - endpoints: ["router1:eth2", "router13:eth1"]
+    - endpoints: ["router13:eth2", "switch1:eth1"]
+
     - endpoints: ["router1:eth4", "router3:eth1"]
     - endpoints: ["router1:eth5", "router4:eth1"]
     - endpoints: ["router1:eth3", "Edge_server2:eth1"]
@@ -849,13 +881,21 @@ topology:
     - endpoints: ["router2:eth2", "router6:eth1"]
     - endpoints: ["router2:eth3", "router7:eth1"]
     # Router 3 Connections
-    - endpoints: ["router3:eth3", "switch3:eth1"]
+    # Router 11 in between router3 and switch3
+    #- endpoints: ["router3:eth3", "switch3:eth1"]
+    - endpoints: ["router3:eth3", "router11:eth1"]
+    - endpoints: ["router11:eth2", "switch3:eth1"]
+
     - endpoints: ["router3:eth4", "router7:eth2"]
     # Switch 3 Connections
     - endpoints: ["switch3:eth2", "Edge_server5:eth1"]
     # Router 4 Connections
     - endpoints: ["router4:eth2", "router3:eth2"]
-    - endpoints: ["router4:eth3", "router5:eth1"]
+    # Router 12 in between router4 and router5
+    #- endpoints: ["router4:eth3", "router5:eth1"]
+    - endpoints: ["router4:eth3", "router12:eth1"]
+    - endpoints: ["router12:eth2", "router5:eth1"]
+
     - endpoints: ["router4:eth4", "Edge_server3:eth1"]  
     # Router 5
     - endpoints: ["router5:eth2", "switch2:eth1"]
@@ -874,7 +914,11 @@ topology:
     - endpoints: ["router6:eth2", "router8:eth1"]
     - endpoints: ["router6:eth3", "router9:eth1"]
     # Router 7 Connections
-    - endpoints: ["router7:eth3", "switch4:eth1"]
+    # Router 10 in between router7 and switch4
+    #- endpoints: ["router7:eth3", "switch4:eth1"]
+    - endpoints: ["router7:eth3", "router10:eth1"]
+    - endpoints: ["router10:eth2", "switch4:eth1"]
+
     # Switch 4 Connections
     - endpoints: ["switch4:eth2", "Edge_server6:eth1"]
     # Router 8 Connections
@@ -895,5 +939,5 @@ topology:
     - endpoints: ["switch5:eth11", "client25:eth1"]
     - endpoints: ["switch5:eth12", "Edge_server8:eth1"]
     - endpoints: ["switch5:eth13", "client26:eth1"]
-    #- endpoints: ["router8:eth3", "macvlan:vmnet8"]
+    
     
