@@ -19,6 +19,9 @@ topology:
     switch5:
       kind: ceos
       image: testing954/ceos:4.28.0F
+    switch6:
+      kind: ceos
+      image: testing954/ceos:4.28.0F
 
     router1:
       kind: linux
@@ -115,7 +118,7 @@ topology:
         - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
     Edge_server2:
       kind: linux
-      image: testing954/server2:latest
+      image: testing954/server1:latest
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
@@ -125,7 +128,7 @@ topology:
         - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
     Edge_server3:
       kind: linux
-      image: testing954/server3:latest
+      image: testing954/server1:latest
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
@@ -135,7 +138,7 @@ topology:
         - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
     Edge_server4:
       kind: linux
-      image: testing954/server4:latest
+      image: testing954/server1:latest
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
@@ -145,7 +148,7 @@ topology:
         - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
     Edge_server5:
       kind: linux
-      image: testing954/server5:latest
+      image: testing954/server1:latest
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
@@ -155,7 +158,7 @@ topology:
         - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
     Edge_server6:
       kind: linux
-      image: testing954/server6:latest
+      image: testing954/server1:latest
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
@@ -165,7 +168,7 @@ topology:
         - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
     Edge_server7:
       kind: linux
-      image: testing954/server7:latest
+      image: testing954/server1:latest
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
@@ -175,7 +178,7 @@ topology:
         - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
     Edge_server8:
       kind: linux
-      image: testing954/server8:latest
+      image: testing954/server1:latest
       binds:
         - ./scripts/client-init.sh:/client-init.sh
         - ./ip-mapping.txt:/ip-mapping.txt
@@ -183,6 +186,17 @@ topology:
       exec:
         #- bash /client-init.sh
         - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
+    Edge_server9:
+      kind: linux
+      image: testing954/server1:latest
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+      exec:
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &" 
+
     client1:
       kind: linux
       image: hamidhrf/k3s-client:v7
@@ -856,6 +870,197 @@ topology:
       exec:
         #- bash /client-init.sh
         - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
+    client28:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client28/k3s:/var/lib/rancher/k3s
+        - ./client-data/client28/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client28/kubelet:/var/lib/kubelet
+        - ./client-data/client28/liqo:/var/lib/liqo
+        - ./client-data/client28/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared:/shared     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"   
+
+    client29:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client29/k3s:/var/lib/rancher/k3s
+        - ./client-data/client29/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client29/kubelet:/var/lib/kubelet
+        - ./client-data/client29/liqo:/var/lib/liqo
+        - ./client-data/client29/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared:/shared     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"  
+
+    client30:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client30/k3s:/var/lib/rancher/k3s
+        - ./client-data/client30/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client30/kubelet:/var/lib/kubelet
+        - ./client-data/client30/liqo:/var/lib/liqo
+        - ./client-data/client30/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared:/shared     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"  
+
+    client31:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client31/k3s:/var/lib/rancher/k3s
+        - ./client-data/client31/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client31/kubelet:/var/lib/kubelet
+        - ./client-data/client31/liqo:/var/lib/liqo
+        - ./client-data/client31/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared:/shared     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"  
+
+    client32:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client32/k3s:/var/lib/rancher/k3s
+        - ./client-data/client32/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client32/kubelet:/var/lib/kubelet
+        - ./client-data/client32/liqo:/var/lib/liqo
+        - ./client-data/client32/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared:/shared     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"   
+
+    client33:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client33/k3s:/var/lib/rancher/k3s
+        - ./client-data/client33/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client33/kubelet:/var/lib/kubelet
+        - ./client-data/client33/liqo:/var/lib/liqo
+        - ./client-data/client33/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared:/shared     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"      
+
+    client34:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client34/k3s:/var/lib/rancher/k3s
+        - ./client-data/client34/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client34/kubelet:/var/lib/kubelet
+        - ./client-data/client34/liqo:/var/lib/liqo
+        - ./client-data/client34/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared:/shared     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"    
+
+    client35:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client35/k3s:/var/lib/rancher/k3s
+        - ./client-data/client35/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client35/kubelet:/var/lib/kubelet
+        - ./client-data/client35/liqo:/var/lib/liqo
+        - ./client-data/client35/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - ./shared:/shared     
+        #- /etc/resolv.conf:/etc/resolv.conf:ro
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"          
          
 
   links:
@@ -939,5 +1144,16 @@ topology:
     - endpoints: ["switch5:eth11", "client25:eth1"]
     - endpoints: ["switch5:eth12", "Edge_server8:eth1"]
     - endpoints: ["switch5:eth13", "client26:eth1"]
+    # Switch 6 Connections
+    - endpoints: ["router8:eth6", "switch6:eth1"]
+    - endpoints: ["client28:eth1", "switch6:eth2"]
+    - endpoints: ["client29:eth1", "switch6:eth3"]
+    - endpoints: ["client30:eth1", "switch6:eth4"]
+    - endpoints: ["client31:eth1", "switch6:eth5"]
+    - endpoints: ["client32:eth1", "switch6:eth6"]
+    - endpoints: ["client33:eth1", "switch6:eth7"]
+    - endpoints: ["client34:eth1", "switch6:eth8"]
+    - endpoints: ["client35:eth1", "switch6:eth9"]
+    - endpoints: ["Edge_server9:eth1", "switch6:eth10"]
     
     
