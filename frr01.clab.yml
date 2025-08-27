@@ -29,54 +29,63 @@ topology:
       binds:
         - router1/daemons:/etc/frr/daemons
         - router1/frr.conf:/etc/frr/frr.conf
+        - ./router-configs/vtysh.conf:/etc/frr/vtysh.conf
     router2:
       kind: linux
       image: frrouting/frr:latest
       binds:
         - router2/daemons:/etc/frr/daemons
         - router2/frr.conf:/etc/frr/frr.conf
+        - ./router-configs/vtysh.conf:/etc/frr/vtysh.conf
     router3:
       kind: linux
       image: frrouting/frr:latest
       binds:
         - router3/daemons:/etc/frr/daemons
         - router3/frr.conf:/etc/frr/frr.conf
+        - ./router-configs/vtysh.conf:/etc/frr/vtysh.conf
     router4:
       kind: linux
       image: frrouting/frr:latest
       binds:
         - router4/daemons:/etc/frr/daemons
         - router4/frr.conf:/etc/frr/frr.conf
+        - ./router-configs/vtysh.conf:/etc/frr/vtysh.conf
     router5:
       kind: linux
       image: frrouting/frr:latest
       binds:
         - router5/daemons:/etc/frr/daemons
         - router5/frr.conf:/etc/frr/frr.conf
+        - ./router-configs/vtysh.conf:/etc/frr/vtysh.conf
     router6:
       kind: linux
       image: frrouting/frr:latest
       binds:
         - router6/daemons:/etc/frr/daemons
         - router6/frr.conf:/etc/frr/frr.conf
+        - ./router-configs/vtysh.conf:/etc/frr/vtysh.conf
     router7:
       kind: linux
       image: frrouting/frr:latest
       binds:
         - router7/daemons:/etc/frr/daemons
         - router7/frr.conf:/etc/frr/frr.conf
+        - ./router-configs/vtysh.conf:/etc/frr/vtysh.conf
     router8:
       kind: linux
       image: frrouting/frr:latest
       binds:
         - router8/daemons:/etc/frr/daemons
         - router8/frr.conf:/etc/frr/frr.conf
+        - ./router-configs/vtysh.conf:/etc/frr/vtysh.conf
     router9:
       kind: linux
       image: frrouting/frr:latest
       binds:
         - router9/daemons:/etc/frr/daemons
         - router9/frr.conf:/etc/frr/frr.conf
+        - ./router-configs/vtysh.conf:/etc/frr/vtysh.conf
 
     router10:   # between router7 and switch4
       kind: linux
@@ -84,6 +93,7 @@ topology:
       binds:
         - router10/daemons:/etc/frr/daemons
         - router10/frr.conf:/etc/frr/frr.conf
+        - ./router-configs/vtysh.conf:/etc/frr/vtysh.conf
 
     router11:   # between router3 and switch3
       kind: linux
@@ -91,6 +101,7 @@ topology:
       binds:
         - router11/daemons:/etc/frr/daemons
         - router11/frr.conf:/etc/frr/frr.conf
+        - ./router-configs/vtysh.conf:/etc/frr/vtysh.conf
 
     router12:   # between router4 and router5
       kind: linux
@@ -98,6 +109,7 @@ topology:
       binds:
         - router12/daemons:/etc/frr/daemons
         - router12/frr.conf:/etc/frr/frr.conf
+        - ./router-configs/vtysh.conf:/etc/frr/vtysh.conf
 
     router13:   # between router1 and switch1
       kind: linux
@@ -105,6 +117,7 @@ topology:
       binds:
         - router13/daemons:/etc/frr/daemons
         - router13/frr.conf:/etc/frr/frr.conf
+        - ./router-configs/vtysh.conf:/etc/frr/vtysh.conf
 
     Edge_server1:
       kind: linux
