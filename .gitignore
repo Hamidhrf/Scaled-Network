@@ -40,7 +40,7 @@ venv/
 clab-*/
 
 # All per-client runtime data (k3s/kubelet/containerd, certs, secrets, logs)
-client-data/
+#client-data/
 
 # Logs and dumps
 *.log
