@@ -42,10 +42,10 @@ should_peer_to_hub() {
 # ──────────────────────────────────────────────────────────────────────────────
 # 1) Configure the data interface (eth1) from ip-mapping.txt
 # ──────────────────────────────────────────────────────────────────────────────
-for _ in {1..60}; do ip link show "$IFACE_DATA" &>/dev/null && break; sleep 0.5; done
+for _ in {1..70}; do ip link show "$IFACE_DATA" &>/dev/null && break; sleep 0.5; done
 
 NODE_IP_DATA=""
-while read -r name cidr gw; do
+while read -r name cidr gw || [[ -n "$name" ]]; do
   [[ -z "${name:-}" || "$name" =~ ^# ]] && continue
   if [[ "$HOSTNAME" == "$name" ]]; then
     ip link set "$IFACE_DATA" up
