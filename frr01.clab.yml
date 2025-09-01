@@ -225,7 +225,6 @@ topology:
         - ./client-data/client1/liqo:/var/lib/liqo
         - ./client-data/client1/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro
         - ./shared:/shared      
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -249,8 +248,7 @@ topology:
         - ./client-data/client2/kubelet:/var/lib/kubelet
         - ./client-data/client2/liqo:/var/lib/liqo
         - ./client-data/client2/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw           
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -274,8 +272,7 @@ topology:
         - ./client-data/client3/kubelet:/var/lib/kubelet
         - ./client-data/client3/liqo:/var/lib/liqo
         - ./client-data/client3/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw             
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -299,8 +296,7 @@ topology:
         - ./client-data/client4/kubelet:/var/lib/kubelet
         - ./client-data/client4/liqo:/var/lib/liqo
         - ./client-data/client4/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw             
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -324,8 +320,7 @@ topology:
         - ./client-data/client5/kubelet:/var/lib/kubelet
         - ./client-data/client5/liqo:/var/lib/liqo
         - ./client-data/client5/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw 
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -349,8 +344,7 @@ topology:
         - ./client-data/client6/kubelet:/var/lib/kubelet
         - ./client-data/client6/liqo:/var/lib/liqo
         - ./client-data/client6/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw         
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -375,7 +369,6 @@ topology:
         - ./client-data/client7/liqo:/var/lib/liqo
         - ./client-data/client7/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -399,8 +392,7 @@ topology:
         - ./client-data/client8/kubelet:/var/lib/kubelet
         - ./client-data/client8/liqo:/var/lib/liqo
         - ./client-data/client8/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw       
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -424,8 +416,7 @@ topology:
         - ./client-data/client9/kubelet:/var/lib/kubelet
         - ./client-data/client9/liqo:/var/lib/liqo
         - ./client-data/client9/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw        
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -449,8 +440,7 @@ topology:
         - ./client-data/client10/kubelet:/var/lib/kubelet
         - ./client-data/client10/liqo:/var/lib/liqo
         - ./client-data/client10/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw     
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -474,8 +464,7 @@ topology:
         - ./client-data/client11/kubelet:/var/lib/kubelet
         - ./client-data/client11/liqo:/var/lib/liqo
         - ./client-data/client11/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw    
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -499,8 +488,7 @@ topology:
         - ./client-data/client12/kubelet:/var/lib/kubelet
         - ./client-data/client12/liqo:/var/lib/liqo
         - ./client-data/client12/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw          
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -524,8 +512,7 @@ topology:
         - ./client-data/client13/kubelet:/var/lib/kubelet
         - ./client-data/client13/liqo:/var/lib/liqo
         - ./client-data/client13/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw 
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -549,8 +536,7 @@ topology:
         - ./client-data/client14/kubelet:/var/lib/kubelet
         - ./client-data/client14/liqo:/var/lib/liqo
         - ./client-data/client14/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw         
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -574,8 +560,7 @@ topology:
         - ./client-data/client15/kubelet:/var/lib/kubelet
         - ./client-data/client15/liqo:/var/lib/liqo
         - ./client-data/client15/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw         
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -599,8 +584,7 @@ topology:
         - ./client-data/client16/kubelet:/var/lib/kubelet
         - ./client-data/client16/liqo:/var/lib/liqo
         - ./client-data/client16/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw     
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -624,8 +608,7 @@ topology:
         - ./client-data/client17/kubelet:/var/lib/kubelet
         - ./client-data/client17/liqo:/var/lib/liqo
         - ./client-data/client17/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw         
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -649,8 +632,7 @@ topology:
         - ./client-data/client18/kubelet:/var/lib/kubelet
         - ./client-data/client18/liqo:/var/lib/liqo
         - ./client-data/client18/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw    
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -674,8 +656,7 @@ topology:
         - ./client-data/client19/kubelet:/var/lib/kubelet
         - ./client-data/client19/liqo:/var/lib/liqo
         - ./client-data/client19/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw     
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -699,8 +680,7 @@ topology:
         - ./client-data/client20/kubelet:/var/lib/kubelet
         - ./client-data/client20/liqo:/var/lib/liqo
         - ./client-data/client20/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw     
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -724,8 +704,7 @@ topology:
         - ./client-data/client21/kubelet:/var/lib/kubelet
         - ./client-data/client21/liqo:/var/lib/liqo
         - ./client-data/client21/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw     
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -749,8 +728,7 @@ topology:
         - ./client-data/client22/kubelet:/var/lib/kubelet
         - ./client-data/client22/liqo:/var/lib/liqo
         - ./client-data/client22/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw   
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -774,8 +752,7 @@ topology:
         - ./client-data/client23/kubelet:/var/lib/kubelet
         - ./client-data/client23/liqo:/var/lib/liqo
         - ./client-data/client23/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw     
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -799,8 +776,7 @@ topology:
         - ./client-data/client24/kubelet:/var/lib/kubelet
         - ./client-data/client24/liqo:/var/lib/liqo
         - ./client-data/client24/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw   
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -824,8 +800,7 @@ topology:
         - ./client-data/client25/kubelet:/var/lib/kubelet
         - ./client-data/client25/liqo:/var/lib/liqo
         - ./client-data/client25/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw     
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -849,8 +824,7 @@ topology:
         - ./client-data/client26/kubelet:/var/lib/kubelet
         - ./client-data/client26/liqo:/var/lib/liqo
         - ./client-data/client26/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw      
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -874,8 +848,7 @@ topology:
         - ./client-data/client27/kubelet:/var/lib/kubelet
         - ./client-data/client27/liqo:/var/lib/liqo
         - ./client-data/client27/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw  
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -897,8 +870,7 @@ topology:
         - ./client-data/client28/kubelet:/var/lib/kubelet
         - ./client-data/client28/liqo:/var/lib/liqo
         - ./client-data/client28/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw 
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -921,8 +893,7 @@ topology:
         - ./client-data/client29/kubelet:/var/lib/kubelet
         - ./client-data/client29/liqo:/var/lib/liqo
         - ./client-data/client29/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw    
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -945,8 +916,7 @@ topology:
         - ./client-data/client30/kubelet:/var/lib/kubelet
         - ./client-data/client30/liqo:/var/lib/liqo
         - ./client-data/client30/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw    
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -969,8 +939,7 @@ topology:
         - ./client-data/client31/kubelet:/var/lib/kubelet
         - ./client-data/client31/liqo:/var/lib/liqo
         - ./client-data/client31/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw    
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -993,8 +962,7 @@ topology:
         - ./client-data/client32/kubelet:/var/lib/kubelet
         - ./client-data/client32/liqo:/var/lib/liqo
         - ./client-data/client32/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw   
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -1017,8 +985,7 @@ topology:
         - ./client-data/client33/kubelet:/var/lib/kubelet
         - ./client-data/client33/liqo:/var/lib/liqo
         - ./client-data/client33/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw  
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -1042,7 +1009,6 @@ topology:
         - ./client-data/client34/liqo:/var/lib/liqo
         - ./client-data/client34/etc-liqo:/etc/liqo
         - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
@@ -1065,18 +1031,354 @@ topology:
         - ./client-data/client35/kubelet:/var/lib/kubelet
         - ./client-data/client35/liqo:/var/lib/liqo
         - ./client-data/client35/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw
-        #- ./liqo-v1.0.0.tgz:/liqo-chart.tgz:ro     
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw    
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
         - /dev:/dev
       exec:
         #- bash /client-init.sh
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"    
+
+    client36:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client36/k3s:/var/lib/rancher/k3s
+        - ./client-data/client36/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client36/kubelet:/var/lib/kubelet
+        - ./client-data/client36/liqo:/var/lib/liqo
+        - ./client-data/client36/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - ./shared:/shared      
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
+
+    client37:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client37/k3s:/var/lib/rancher/k3s
+        - ./client-data/client37/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client37/kubelet:/var/lib/kubelet
+        - ./client-data/client37/liqo:/var/lib/liqo
+        - ./client-data/client37/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - ./shared:/shared      
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
+
+    client38:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client38/k3s:/var/lib/rancher/k3s
+        - ./client-data/client38/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client38/kubelet:/var/lib/kubelet
+        - ./client-data/client38/liqo:/var/lib/liqo
+        - ./client-data/client38/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - ./shared:/shared      
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
+
+    client39:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client39/k3s:/var/lib/rancher/k3s
+        - ./client-data/client39/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client39/kubelet:/var/lib/kubelet
+        - ./client-data/client39/liqo:/var/lib/liqo
+        - ./client-data/client39/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - ./shared:/shared      
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
+
+    client40:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client40/k3s:/var/lib/rancher/k3s
+        - ./client-data/client40/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client40/kubelet:/var/lib/kubelet
+        - ./client-data/client40/liqo:/var/lib/liqo
+        - ./client-data/client40/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - ./shared:/shared      
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
+
+    client41:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client41/k3s:/var/lib/rancher/k3s
+        - ./client-data/client41/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client41/kubelet:/var/lib/kubelet
+        - ./client-data/client41/liqo:/var/lib/liqo
+        - ./client-data/client41/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - ./shared:/shared      
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
+
+    client42:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client42/k3s:/var/lib/rancher/k3s
+        - ./client-data/client42/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client42/kubelet:/var/lib/kubelet
+        - ./client-data/client42/liqo:/var/lib/liqo
+        - ./client-data/client42/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - ./shared:/shared      
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
+
+    client43:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client43/k3s:/var/lib/rancher/k3s
+        - ./client-data/client43/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client43/kubelet:/var/lib/kubelet
+        - ./client-data/client43/liqo:/var/lib/liqo
+        - ./client-data/client43/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - ./shared:/shared      
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
+
+    client44:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client44/k3s:/var/lib/rancher/k3s
+        - ./client-data/client44/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client44/kubelet:/var/lib/kubelet
+        - ./client-data/client44/liqo:/var/lib/liqo
+        - ./client-data/client44/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - ./shared:/shared      
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
+
+    client45:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client45/k3s:/var/lib/rancher/k3s
+        - ./client-data/client45/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client45/kubelet:/var/lib/kubelet
+        - ./client-data/client45/liqo:/var/lib/liqo
+        - ./client-data/client45/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - ./shared:/shared      
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
+
+    client46:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client46/k3s:/var/lib/rancher/k3s
+        - ./client-data/client46/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client46/kubelet:/var/lib/kubelet
+        - ./client-data/client46/liqo:/var/lib/liqo
+        - ./client-data/client46/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - ./shared:/shared      
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
+
+    client47:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client47/k3s:/var/lib/rancher/k3s
+        - ./client-data/client47/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client47/kubelet:/var/lib/kubelet
+        - ./client-data/client47/liqo:/var/lib/liqo
+        - ./client-data/client47/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - ./shared:/shared      
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
+
+    client48:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client48/k3s:/var/lib/rancher/k3s
+        - ./client-data/client48/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client48/kubelet:/var/lib/kubelet
+        - ./client-data/client48/liqo:/var/lib/liqo
+        - ./client-data/client48/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - ./shared:/shared      
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
+
+    client49:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client49/k3s:/var/lib/rancher/k3s
+        - ./client-data/client49/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client49/kubelet:/var/lib/kubelet
+        - ./client-data/client49/liqo:/var/lib/liqo
+        - ./client-data/client49/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - ./shared:/shared      
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
+
+    client50:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client50/k3s:/var/lib/rancher/k3s
+        - ./client-data/client50/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client50/kubelet:/var/lib/kubelet
+        - ./client-data/client50/liqo:/var/lib/liqo
+        - ./client-data/client50/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - ./shared:/shared      
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
+        - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"
+
+    client51:
+      kind: linux
+      image: hamidhrf/k3s-client:v7
+      env:
+        CLAB_LINUX_PRIVILEGED: "true"
+      binds:
+        - ./scripts/client-init.sh:/client-init.sh
+        - ./ip-mapping.txt:/ip-mapping.txt
+        - ./shared/peering-config.txt:/peering-config.txt:ro
+        - ./client-data/client51/k3s:/var/lib/rancher/k3s
+        - ./client-data/client51/etc-rancher:/etc/rancher/k3s
+        - ./client-data/client51/kubelet:/var/lib/kubelet
+        - ./client-data/client51/liqo:/var/lib/liqo
+        - ./client-data/client51/etc-liqo:/etc/liqo
+        - /sys/fs/cgroup:/sys/fs/cgroup:rw
+        - ./shared:/shared      
+        - /lib/modules:/lib/modules:ro
+        - /dev:/dev
+      exec:
         - bash -lc "nohup bash /client-init.sh > /var/log/client-init.log 2>&1 &"          
          
 
   links:
+    # Router 1
     - endpoints: ["router1:eth1", "router2:eth1"]
     # Router 13 in between router1 and switch1
     #- endpoints: ["router1:eth2", "switch1:eth1"]
@@ -1168,5 +1470,25 @@ topology:
     - endpoints: ["client34:eth1", "switch6:eth8"]
     - endpoints: ["client35:eth1", "switch6:eth9"]
     - endpoints: ["Edge_server9:eth1", "switch6:eth10"]
+    
+    # Switch3 new client connections (client36-43)
+    - endpoints: ["client36:eth1", "switch3:eth3"]
+    - endpoints: ["client37:eth1", "switch3:eth4"]
+    - endpoints: ["client38:eth1", "switch3:eth5"]
+    - endpoints: ["client39:eth1", "switch3:eth6"]
+    - endpoints: ["client40:eth1", "switch3:eth7"]
+    - endpoints: ["client41:eth1", "switch3:eth8"]
+    - endpoints: ["client42:eth1", "switch3:eth9"]
+    - endpoints: ["client43:eth1", "switch3:eth10"]
+
+    # Switch4 new client connections (client44-51)
+    - endpoints: ["client44:eth1", "switch4:eth3"]
+    - endpoints: ["client45:eth1", "switch4:eth4"]
+    - endpoints: ["client46:eth1", "switch4:eth5"]
+    - endpoints: ["client47:eth1", "switch4:eth6"]
+    - endpoints: ["client48:eth1", "switch4:eth7"]
+    - endpoints: ["client49:eth1", "switch4:eth8"]
+    - endpoints: ["client50:eth1", "switch4:eth9"]
+    - endpoints: ["client51:eth1", "switch4:eth10"]
     
     
