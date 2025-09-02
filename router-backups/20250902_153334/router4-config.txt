@@ -1,0 +1,52 @@
+Building configuration...
+
+Current configuration:
+!
+frr version 8.4_git
+frr defaults traditional
+hostname router4
+no ipv6 forwarding
+!
+interface eth1
+ ip address 10.0.0.22/30
+exit
+!
+interface eth2
+ ip address 10.0.0.18/30
+exit
+!
+interface eth3
+ ip address 10.255.45.0/31
+ ip ospf network point-to-point
+exit
+!
+interface eth4
+ ip address 10.0.5.129/25
+exit
+!
+interface lo
+ ip address 10.2.1.5/32
+exit
+!
+router bgp 500
+ bgp router-id 10.2.1.5
+ no bgp ebgp-requires-policy
+ no bgp suppress-duplicates
+ no bgp hard-administrative-reset
+ no bgp graceful-restart notification
+ no bgp network import-check
+ neighbor 10.0.0.17 remote-as 100
+ neighbor 10.0.0.21 remote-as 300
+ neighbor 10.255.45.1 remote-as 500
+ !
+ address-family ipv4 unicast
+  network 10.0.5.128/25
+  redistribute connected
+  redistribute ospf 500
+  neighbor 10.0.0.17 soft-reconfiguration inbound
+  neighbor 10.0.0.21 soft-reconfiguration inbound
+  neighbor 10.255.45.1 soft-reconfiguration inbound
+ exit-address-family
+exit
+!
+end

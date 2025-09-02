@@ -5,4 +5,4 @@ fe00::0	ip6-localnet
 fe00::0	ip6-mcastprefix
 fe00::1	ip6-allnodes
 fe00::2	ip6-allrouters
-10.42.0.8	liqo-ipam-7845f6bd59-67nrw
+10.42.0.14	liqo-ipam-7845f6bd59-67nrw

@@ -5,4 +5,4 @@ fe00::0	ip6-localnet
 fe00::0	ip6-mcastprefix
 fe00::1	ip6-allnodes
 fe00::2	ip6-allrouters
-10.42.0.7	liqo-metric-agent-554f99d6b7-rhwf5
+10.42.0.5	liqo-metric-agent-554f99d6b7-rhwf5

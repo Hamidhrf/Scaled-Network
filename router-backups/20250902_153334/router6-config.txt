@@ -1,0 +1,33 @@
+Building configuration...
+
+Current configuration:
+!
+frr version 8.4_git
+frr defaults traditional
+hostname router6
+no ipv6 forwarding
+!
+interface eth1
+ ip address 10.0.2.2/30
+ ip ospf 200 area 1.0.0.0
+exit
+!
+interface eth2
+ ip address 10.0.2.13/30
+ ip ospf 200 area 0.0.0.0
+exit
+!
+interface eth3
+ ip address 10.0.2.5/30
+ ip ospf 200 area 0.0.0.0
+exit
+!
+interface lo
+ ip address 10.2.1.21/32
+exit
+!
+router ospf 200
+ ospf router-id 10.2.1.21
+exit
+!
+end

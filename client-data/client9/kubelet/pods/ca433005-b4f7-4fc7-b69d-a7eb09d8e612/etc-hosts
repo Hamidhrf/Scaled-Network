@@ -5,5 +5,5 @@ fe00::	ip6-localnet
 ff00::	ip6-mcastprefix
 ff02::1	ip6-allnodes
 ff02::2	ip6-allrouters
-172.20.20.10	client9
-3fff:172:20:20::a	client9
+172.20.20.75	client9
+3fff:172:20:20::4b	client9

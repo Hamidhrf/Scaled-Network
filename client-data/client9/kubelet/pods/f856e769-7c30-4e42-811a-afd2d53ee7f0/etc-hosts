@@ -5,4 +5,4 @@ fe00::0	ip6-localnet
 fe00::0	ip6-mcastprefix
 fe00::1	ip6-allnodes
 fe00::2	ip6-allrouters
-10.42.0.9	liqo-proxy-646c96dd49-cczb6
+10.42.0.4	liqo-proxy-646c96dd49-cczb6

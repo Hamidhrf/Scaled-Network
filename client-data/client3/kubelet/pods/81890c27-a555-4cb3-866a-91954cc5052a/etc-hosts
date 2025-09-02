@@ -5,4 +5,4 @@ fe00::0	ip6-localnet
 fe00::0	ip6-mcastprefix
 fe00::1	ip6-allnodes
 fe00::2	ip6-allrouters
-10.42.0.8	liqo-webhook-684bbc4856-gmg86
+10.42.0.6	liqo-webhook-684bbc4856-gmg86
