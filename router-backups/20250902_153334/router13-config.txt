@@ -1,0 +1,35 @@
+Building configuration...
+
+Current configuration:
+!
+frr version 8.4_git
+frr defaults traditional
+hostname router13
+no ipv6 forwarding
+!
+interface eth1
+ ip address 10.255.13.1/31
+exit
+!
+interface eth2
+ ip address 10.0.3.1/25
+exit
+!
+interface lo
+ ip address 10.2.1.13/32
+exit
+!
+router bgp 310
+ bgp router-id 10.2.1.13
+ no bgp ebgp-requires-policy
+ no bgp network import-check
+ neighbor 10.255.13.0 remote-as 300
+ !
+ address-family ipv4 unicast
+  network 10.0.3.0/25
+  redistribute connected
+  neighbor 10.255.13.0 soft-reconfiguration inbound
+ exit-address-family
+exit
+!
+end
