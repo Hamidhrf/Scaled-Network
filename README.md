@@ -14,31 +14,9 @@ This project creates a large-scale network simulation featuring:
 ## Architecture
 
 ### Network Topology
-```
-                    ┌─────────────── BGP Core ───────────────┐
-                    │                                        │
-    ┌──────┐   ┌──────┐   ┌──────┐   ┌──────┐   ┌──────┐
-    │  R1  ├───┤  R2  ├───┤  R6  ├───┤  R8  ├───┤  R9  │
-    │(BGP) │   │(OSPF)│   │(OSPF)│   │(OSPF)│   │(OSPF)│
-    └──┬───┘   └──┬───┘   └──────┘   └──┬───┘   └──┬───┘
-       │        │                       │        │
-    ┌──▼───┐ ┌──▼───┐               ┌──▼────┐ ┌──▼────┐
-    │  R3  │ │  R7  │               │Switch6│ │Switch5│
-    │(BGP) │ │(BGP) │               │(SW6)  │ │(SW5)  │
-    └──┬───┘ └──┬───┘               └───────┘ └───────┘
-       │       │                   Clients   Clients
-    ┌──▼───┐ ┌─▼────┐               28-35     16-26
-    │ R11  │ │ R10  │               +ES9      +ES8
-    │(BGP) │ │(BGP) │
-    └──┬───┘ └──┬───┘
-    ┌──▼────┐ ┌─▼────┐
-    │Switch3│ │Switch4│
-    │(SW3)  │ │(SW4) │
-    └───────┘ └──────┘
-    Clients   Clients
-    36-43     44-51
-    +ES5      +ES6
-```
+
+<img width="2595" height="2242" alt="topology" src="https://github.com/user-attachments/assets/2a764bc2-9d92-41d1-96b7-0880b3694819" />
+
 
 ### Network Segments
 
@@ -90,7 +68,7 @@ mkdir -p client-data/{client1..client51}/{k3s,etc-rancher,kubelet,liqo,etc-liqo}
 mkdir -p shared
 
 # Deploy the containerlab topology
-sudo containerlab deploy --topo frr01.clab.yml
+sudo containerlab deploy frr01.clab.yml
 
 # Verify deployment
 docker ps | grep clab-frr01
@@ -197,10 +175,10 @@ The setup uses Liqo for Kubernetes multi-cluster networking:
 ### Deployment Commands
 ```bash
 # Deploy topology
-sudo containerlab deploy --topo frr01.clab.yml
+sudo containerlab deploy frr01.clab.yml
 
 # Destroy topology
-sudo containerlab destroy --topo frr01.clab.yml
+sudo containerlab destroy frr01.clab.yml
 
 # Inspect specific container
 docker exec -it clab-frr01-router1 bash
@@ -245,45 +223,6 @@ docker exec clab-frr01-router8 vtysh -c "show ip route"
 # Monitor K3s cluster status
 docker exec clab-frr01-client26 k3s kubectl get nodes -o wide
 docker exec clab-frr01-client26 k3s kubectl get pods -A
-```
-
-## Troubleshooting
-
-### Common Issues
-
-**1. Connectivity Problems**
-- **Symptom**: Ping matrix shows failures between specific network segments
-- **Diagnosis**: Check OSPF neighbors and BGP peer status
-- **Solution**: Verify router configurations and interface states
-```bash
-docker exec clab-frr01-router6 vtysh -c "show ip ospf neighbor"
-docker exec clab-frr01-router1 vtysh -c "show ip bgp summary"
-```
-
-**2. K3s Initialization Failures**
-- **Symptom**: Containers fail to join K3s cluster
-- **Diagnosis**: Check initialization logs
-- **Solution**: Verify network connectivity and peering configuration
-```bash
-docker exec clab-frr01-client26 cat /var/log/client-init.log
-docker exec clab-frr01-client1 cat /var/log/client-init.log
-```
-
-**3. Resource Exhaustion**
-- **Symptom**: "fork: retry: Resource temporarily unavailable" during ping tests
-- **Diagnosis**: Too many concurrent processes
-- **Solution**: Increase system limits or run tests sequentially
-```bash
-ulimit -u 4096
-echo 65536 > /proc/sys/kernel/pid_max
-```
-
-**4. IP Configuration Issues**
-- **Symptom**: Containers can't read IP assignments from ip-mapping.txt
-- **Diagnosis**: Missing newline at end of file
-- **Solution**: Ensure file ends with newline character
-```bash
-echo "" >> ip-mapping.txt
 ```
 
 ### Diagnostic Commands
@@ -356,20 +295,6 @@ To add more clients:
 ./peering-config.sh apply
 ```
 
-### Router Configuration Management
-```bash
-# Access router CLI
-docker exec -it clab-frr01-router8 vtysh
-
-# Make configuration changes
-configure terminal
-interface eth1
-ip address 10.0.2.14/30
-ip ospf 200 area 0.0.0.0
-exit
-write memory
-```
-
 ### Performance Monitoring
 ```bash
 # Monitor resource usage
@@ -402,42 +327,6 @@ docker exec clab-frr01-client26 k3s kubectl top pods -A
 - **CPU Usage**: Peak during initialization, steady state ~10% per client
 - **Network Bandwidth**: Liqo cluster peering generates background traffic
 - **Storage**: Each client requires ~2GB persistent storage
-
-## Maintenance
-
-### Regular Tasks
-```bash
-# Weekly configuration backup
-./router-backup.sh
-
-# Monitor cluster health
-docker exec clab-frr01-client26 k3s kubectl get nodes -o wide
-
-# Check routing convergence
-for r in {6..9}; do
-    docker exec clab-frr01-router$r vtysh -c "show ip ospf neighbor"
-done
-```
-
-### Configuration Versioning
-- Router configurations are versioned in individual router directories
-- Use the backup script for operational snapshots
-- Git tracks configuration changes with detailed commit messages
-
-## Contributing
-
-### Making Changes
-1. **Test in isolation**: Use smaller topology first
-2. **Backup configurations**: Always run backup script before changes
-3. **Verify connectivity**: Run ping matrix after modifications
-4. **Document changes**: Update README and commit with detailed messages
-
-### Development Workflow
-1. Modify configuration files
-2. Test with `containerlab deploy`
-3. Verify with connectivity tests
-4. Backup successful configurations
-5. Commit changes with clear descriptions
 
 ## License
 
