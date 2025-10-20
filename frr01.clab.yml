@@ -836,7 +836,7 @@ topology:
 
     client27:
       kind: linux
-      image: hamidhrf/k3s-client:v7
+      image: hamidhrf/k3s-client-kwok:v7
       env:
         CLAB_LINUX_PRIVILEGED: "true"
       binds:
@@ -848,7 +848,7 @@ topology:
         - ./client-data/client27/kubelet:/var/lib/kubelet
         - ./client-data/client27/liqo:/var/lib/liqo
         - ./client-data/client27/etc-liqo:/etc/liqo
-        - /sys/fs/cgroup:/sys/fs/cgroup:rw  
+        #- /sys/fs/cgroup:/sys/fs/cgroup:rw  
         - ./shared:/shared     
         #- /etc/resolv.conf:/etc/resolv.conf:ro
         - /lib/modules:/lib/modules:ro
