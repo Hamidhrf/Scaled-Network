@@ -1,5 +1,6 @@
 # Ignore tar and large binary files
 *.tar
+*.tar.gz
 k3s
 
 # Ignore backup and save files
@@ -44,4 +45,18 @@ clab-*/
 
 # Logs and dumps
 *.log
-*.log.gz
+*.log.gz# Client runtime data (K3s, Prometheus, etc.)
+client-data/*/kubelet/
+client-data/*/k3s/
+client-data/*/liqo/
+client-data/*/etc-liqo/
+
+# Keep only the directory structure
+!client-data/
+!client-data/*/
+
+# Shared directory contents
+shared/*
+
+# Backup files
+router-backups/*.txt
