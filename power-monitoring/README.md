@@ -204,7 +204,6 @@ curl http://localhost:19100/metrics
 - **KWOK:** https://kwok.sigs.k8s.io/
 - **Prometheus:** https://prometheus.io/
 - **K3s:** https://k3s.io/
-- **Full Technical Report:** [docs/TECHNICAL_REPORT.md](docs/TECHNICAL_REPORT.md)
 
 ## License
 
