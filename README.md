@@ -371,7 +371,7 @@ node_power_watts{node="sn-fake"}
 sum by (node) (pod_power_watts)
 ```
 
-## Development Notes
+## Development Note
 
 ### Recent Changes
 - **Router Configuration Cleanup**: Removed unused interfaces from router8 (eth3, eth4, eth5)
